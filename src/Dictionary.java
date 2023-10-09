@@ -1,3 +1,5 @@
+package commandline;
+
 public class Dictionary extends Word{
     private ArrayList<Word> words = new ArrayList<Word>();
     public Dictionary() {}
