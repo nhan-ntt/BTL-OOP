@@ -1,4 +1,4 @@
-package commandline;
+package commandLine;
 public class Trie{
 
 }

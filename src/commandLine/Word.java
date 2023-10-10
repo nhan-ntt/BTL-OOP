@@ -1,4 +1,4 @@
-package commandline;
+package commandLine;
 
 public class Word {
     private String word_target;
@@ -6,8 +6,6 @@ public class Word {
 
     /**
      * Construct.
-     * @param word_target english.
-     * @param word_explain vietnamese.
      */
     public Word() {
         this.word_target = "";
