@@ -8,6 +8,7 @@ import java.util.Objects;
 public class Word {
     private String wordTarget;
     private String wordExplain;
+    private boolean isFavorite;
 
     /**
      * Construct.
@@ -36,6 +37,14 @@ public class Word {
 
     public void setWordTarget(String wordTarget) {
         this.wordTarget = wordTarget;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
     }
 
     @Override

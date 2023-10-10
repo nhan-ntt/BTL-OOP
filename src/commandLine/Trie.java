@@ -2,12 +2,14 @@ package commandLine;
 
 import java.util.*;
 
+/**
+ * class Trie la bst chua tu.
+ */
 public class Trie {
-     /**
-     * Node bao gom 1 char va meaning
-     */
-
-    static class Node {
+    /**
+    * Node bao gom 1 char va meaning
+    */
+    private static class Node {
         HashMap<Character, Node> children;
         //meaning: meaning of word ends at node
         String meaning;
@@ -18,7 +20,7 @@ public class Trie {
         }
     }
 
-    public final Node root;
+    private final Node root;
 
     public Trie() {
         root = new Node();
@@ -54,7 +56,25 @@ public class Trie {
             }
             node = node.children.get(c);
         }
+        assert node != null;
         node.meaning = null;
+        node = null;
+    }
+
+    /**
+     * change meaning.
+     * @param wordTarget word.
+     */
+    public void changeMeaning(String wordTarget, String newMeaning) {
+        Node node = root;
+        for (int i = 0; i < wordTarget.length(); i++) {
+            char c = wordTarget.charAt(i);
+            if (!node.children.containsKey(c)) {
+                return;
+            }
+            node = node.children.get(c);
+        }
+        node.meaning = newMeaning;
     }
 
     /**
@@ -71,8 +91,8 @@ public class Trie {
             }
             node = node.children.get(c);
         }
-        if (node.meaning == null) {
-            return "not found ψ(｀∇´)";
+        if (node == null || node.meaning == null) {
+            return "not found ψ(｀∇´)ψ";
         }
         return node.meaning;
     }
@@ -92,11 +112,33 @@ public class Trie {
             }
             node = node.children.get(c);
         }
-        if (node.meaning != null) {
-            result.add(node.meaning);
-        }
+        recommendWord(node, word, result);
         return result;
     }
 
+    protected void recommendWord(Node node, String word, List<String> result) {
+        if (node.meaning != null) {
+            result.add(word);
+        }
+        for (char c: node.children.keySet()) {
+            Node nextNode = node.children.get(c);
+            recommendWord(nextNode, word + c, result);
+        }
+    }
+
+    /**
+     * main.
+     */
+    public static void main(String[] args) {
+        Trie trie = new Trie();
+        trie.insert("hello", "xin chao");
+        trie.insert("dog", "con cho");
+        trie.insert("hell", "dia nguc");
+        trie.insert("damn", "đem");
+
+        System.out.println(trie.recommendedList("d"));
+        trie.remove("hello");
+        System.out.println(trie.getMeaning("hello"));
+    }
 
 }
