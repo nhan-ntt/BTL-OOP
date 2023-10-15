@@ -6,11 +6,11 @@ import java.util.LinkedList;
  * class Dictionary Trie va co them cac list
  */
 public class Dictionary {
-    public Trie listWord = new Trie();
-    public LinkedList<String> favoriteWord = new LinkedList<String>();
-    public LinkedList<String> recentWord = new LinkedList<String>();
-    public LinkedList<String> removed = new LinkedList<String>();
-    public LinkedList<String> editedWord = new LinkedList<String>();
+    public static Trie listWord = new Trie();
+    public static LinkedList<Word> favoriteWord = new LinkedList<Word>();
+    public static LinkedList<Word> recentWord = new LinkedList<Word>();
+    public static LinkedList<Word> removed = new LinkedList<Word>();
+    public static LinkedList<Word> editedWord = new LinkedList<Word>();
 
 
     public static void main(String[] args) {

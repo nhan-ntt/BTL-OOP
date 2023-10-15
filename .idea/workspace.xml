@@ -5,15 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6b5b38d-a1d1-48a0-9b35-6538c3fcab2b" name="Changes" comment="try">
-      <change afterPath="$PROJECT_DIR$/resources/defaultDictionary.dict" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/commandLine/DictionaryManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/dictionary.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/commandLine/DictionaryCommandLine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP/commandLine/Dictionary.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BTL-OOP/commandLine/Dictionary.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP/commandLine/DictionaryManagement.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BTL-OOP/commandLine/DictionaryManagement.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP/commandLine/Trie.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BTL-OOP/commandLine/Trie.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP/commandLine/Word.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BTL-OOP/commandLine/Word.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/commandLine/Dictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commandLine/Dictionary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commandLine/DictionaryManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commandLine/DictionaryManagement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/commandLine/Trie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commandLine/Trie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commandLine/Word.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commandLine/Word.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,25 +79,25 @@
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "dictionaryCommandLine",
-    "jdk.selected.JAVA_MODULE": "1.8",
-    "last_opened_file_path": "C:/Users/Admin/OneDrive - vnu.edu.vn/Documents/BTL-OOP/resources",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "org.infernus.idea.checkstyle.CheckStyleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dictionaryCommandLine&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/OneDrive - vnu.edu.vn/Documents/BTL-OOP/resources&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Admin\OneDrive - vnu.edu.vn\Documents\BTL-OOP\resources" />
@@ -105,9 +106,22 @@
       <recent name="C:\Users\Admin\OneDrive - vnu.edu.vn\Documents\BTL-OOP\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DictionaryManagement">
+  <component name="RunManager" selected="Application.DictionaryCommandLine">
     <configuration name="Dictionary" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="commandLine.Dictionary" />
+      <module name="BTL-OOP" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="commandLine.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DictionaryCommandLine" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="commandLine.DictionaryCommandLine" />
       <module name="BTL-OOP" />
       <extension name="coverage">
         <pattern>
@@ -160,6 +174,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.DictionaryCommandLine" />
         <item itemvalue="Application.DictionaryManagement" />
         <item itemvalue="Application.Trie" />
         <item itemvalue="Application.Dictionary" />

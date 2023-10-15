@@ -1,30 +1,33 @@
 package commandLine;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Scanner;
 
 /**
  * class DictionaryManagement quan ly insert file, export file
  */
-public class DictionaryManagement {
+public class DictionaryManagement extends Dictionary{
     /**
      * insert from command line.
      */
-    public static void insertFromCommandline(Dictionary dictionary) {
+    public static void insertFromCommandline() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Number of words:");
         int number = sc.nextInt();
         String wordTarget, wordExplain;
+        sc.nextLine();
         while (number-- > 0) {
             System.out.println("Word:");
-            wordTarget = sc.next();
+            wordTarget = sc.nextLine();
             System.out.println("Meaning:");
-            wordExplain = sc.next();
-            dictionary.listWord.insert(wordTarget, wordExplain);
+            wordExplain = sc.nextLine();
+            listWord.insert(wordTarget, wordExplain);
         }
     }
 
@@ -36,7 +39,7 @@ public class DictionaryManagement {
     /**
      * insert from file Dict
      */
-    public static void insertFromFileDICT(Dictionary dictionary) {
+    public static void insertFromFileDICT() {
         try {
             String content = readFile("resources\\defaultDictionary.dict", Charset.defaultCharset());
             String[] words = content.split("@");
@@ -47,16 +50,16 @@ public class DictionaryManagement {
                     String wordTarget1 = new String();
                     String wordSound1 = new String();
                     if (result[0].contains("/")) {
-                        String firstmeaning = result[0].substring(0, result[0].indexOf("/"));
+                        String firstMeaning = result[0].substring(0, result[0].indexOf("/"));
                         String lastSoundMeaning = result[0].substring(result[0].indexOf("/"), result[0].length());
-                        wordTarget1 = firstmeaning;
+                        wordTarget1 = firstMeaning;
                         wordSound1 = lastSoundMeaning;
                     } else {
                         wordTarget1 = result[0];
                         wordSound1 = "";
                     }
                     wordExplain1 = result[1];
-                    dictionary.listWord.insert(wordTarget1.trim(), wordExplain1.trim());
+                    listWord.insert(wordTarget1.trim(), wordExplain1.trim());
                 }
             }
 
@@ -66,10 +69,37 @@ public class DictionaryManagement {
 
     }
 
+    public static void dictionaryExportToFile() throws IOException {
+        FileWriter fw = new FileWriter("resources\\dictionary.txt");
+        List<Word> words = listWord.getAllWords();
+        for (Word w : words) {
+            fw.write(w.toString());
+        }
+        fw.close();
+    }
 
+    /**
+     * dictionary lookup.
+     */
+    public static Word lookupWord(String word) {
+        if (!listWord.contains(word)) {
+            return new Word(word, "This word is not already existed");
+        }
+        return new Word(word, listWord.getMeaning(word));
+    }
 
-    public static void main(String[] args) {
-        Dictionary dictionary = new Dictionary();
-        insertFromFileDICT(dictionary);
+    public static String addWord(String wordTarget, String wordExplain) {
+        listWord.insert(wordTarget, wordExplain);
+        return "Add word successfully!";
+    }
+
+    public static String removeWord(String wordTarget) {
+        listWord.remove(wordTarget);
+        return "Remove word successfully!";
+    }
+
+    public static String editWord(String wordTarget, String newMeaning) {
+        listWord.changeMeaning(wordTarget, newMeaning);
+        return "Edit word successfully!";
     }
 }

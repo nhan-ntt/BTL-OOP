@@ -26,6 +26,25 @@ public class Trie {
         root = new Node();
     }
 
+    public Node getRoot() {
+        return root;
+    }
+
+    /**
+     * check a word is in trie or not.
+     */
+    public boolean contains(String wordTarget) {
+        Node node = root;
+        for (int i = 0; i < wordTarget.length(); i++) {
+            char c = wordTarget.charAt(i);
+            if (!node.children.containsKey(c)) {
+                return false;
+            }
+            node = node.children.get(c);
+        }
+        return node != null && node.meaning != null;
+    }
+
     /**
      * insert a Word to Trie
      * @param wordTarget word-target.
@@ -102,8 +121,8 @@ public class Trie {
      * @param word word.
      * @return result.
      */
-    public List<String> recommendedList(String word) {
-        List<String> result = new ArrayList<>();
+    public List<Word> recommendedList(String word) {
+        List<Word> result = new ArrayList<>();
         Node node = root;
         for (int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
@@ -116,15 +135,41 @@ public class Trie {
         return result;
     }
 
-    protected void recommendWord(Node node, String word, List<String> result) {
+    protected void recommendWord(Node node, String word, List<Word> result) {
         if (node.meaning != null) {
-            result.add(word);
+            Word newWord = new Word(word, node.meaning);
+            result.add(newWord);
         }
-        for (char c: node.children.keySet()) {
+        for (char c : node.children.keySet()) {
             Node nextNode = node.children.get(c);
             recommendWord(nextNode, word + c, result);
         }
     }
+
+    /**
+     * get all words.
+     * @return list of all words.
+     */
+    public List<Word> getAllWords() {
+        List<Word> result = new ArrayList<>();
+        trieToList(root, "", result);
+        return result;
+    }
+
+    /**
+     * trie to list.
+     */
+    public void trieToList(Node current, String prefix, List<Word> result) {
+        if (current.meaning != null) {
+            Word newWord = new Word(prefix, current.meaning);
+            result.add(newWord);
+        }
+        for (char c : current.children.keySet()) {
+            Node nextNode = current.children.get(c);
+            trieToList(nextNode, prefix + c, result);
+        }
+    }
+
 
     /**
      * main.
@@ -139,6 +184,7 @@ public class Trie {
         System.out.println(trie.recommendedList("d"));
         trie.remove("hello");
         System.out.println(trie.getMeaning("hello"));
+        System.out.println(trie.getAllWords());
     }
 
 }
