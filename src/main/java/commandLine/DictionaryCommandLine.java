@@ -52,6 +52,8 @@ public class DictionaryCommandLine extends DictionaryManagement{
     }
     public static void dictionaryAdvanced() throws IOException {
         insertFromFileDICT();
+//        importCustomDictionary();
+//        exportCustomDictionary();
         String choice, wordTarget, wordExplain;
         Scanner sc = new Scanner(System.in);
         boolean exit = false;

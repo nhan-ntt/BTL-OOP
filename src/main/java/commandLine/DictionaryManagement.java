@@ -44,7 +44,7 @@ public class DictionaryManagement extends Dictionary{
             String content = readFile("resources\\defaultDictionary.dict", Charset.defaultCharset());
             String[] words = content.split("@");
             for (String word : words) {
-                String result[] = word.split("\r?\n", 2);
+                String[] result = word.split("\r?\n", 2);
                 if (result.length > 1) {
                     String wordExplain1 = new String();
                     String wordTarget1 = new String();
@@ -79,6 +79,58 @@ public class DictionaryManagement extends Dictionary{
     }
 
     /**
+     * write file recentWord and favoriteWord.
+     */
+    public static void exportCustomDictionary() throws IOException
+    {
+        FileWriter fw = new FileWriter("resources\\recentWord.txt");
+        for(Word w : recentWord ) {
+            fw.write(w.getWordTarget() + "\n");
+        }
+        fw.close();
+
+        fw = new FileWriter("resources\\favoriteWord.txt");
+        for(Word w : favoriteWord ) {
+            fw.write(w.getWordTarget() + "\n");
+        }
+        fw.close();
+    }
+
+    /**
+     * nhap du lieu cu cua nguoi dung
+     * @throws IOException
+     */
+    public static void importCustomDictionary() throws IOException
+    {
+        insertFromFileDICT();
+
+        // Read favoriteWord.txt
+        File text = new File("resources\\favoriteWord.txt");
+        Scanner sc = new Scanner(text);
+        while (sc.hasNextLine()) {
+            String target = sc.nextLine();
+            if(target.isEmpty()) {
+                break;
+            }
+            Word favWord = lookupWord(target);
+            favoriteWord.addFirst(favWord);
+
+            favWord.setFavorite(true);
+        }
+
+        // Read recentWord.txt
+        text = new File("resources\\recentWord.txt");
+        sc = new Scanner(text);
+        while (sc.hasNextLine()) {
+            String target = sc.nextLine();
+            if(target.isEmpty()) {
+                break;
+            }
+            recentWord.addFirst(lookupWord(target));
+        }
+    }
+
+    /**
      * dictionary lookup.
      */
     public static Word lookupWord(String word) {
@@ -101,5 +153,12 @@ public class DictionaryManagement extends Dictionary{
     public static String editWord(String wordTarget, String newMeaning) {
         listWord.changeMeaning(wordTarget, newMeaning);
         return "Edit word successfully!";
+    }
+
+    public static void main(String[] args) throws IOException {
+        DictionaryManagement dictionaryManagement = new DictionaryManagement();
+        dictionaryManagement.insertFromFileDICT();
+        dictionaryManagement.importCustomDictionary();
+        exportCustomDictionary();
     }
 }

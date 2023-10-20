@@ -1,5 +1,6 @@
 package commandLine;
 
+import java.io.IOException;
 import java.util.LinkedList;
 
 /**
@@ -9,11 +10,8 @@ public class Dictionary {
     public static Trie listWord = new Trie();
     public static LinkedList<Word> favoriteWord = new LinkedList<Word>();
     public static LinkedList<Word> recentWord = new LinkedList<Word>();
-    public static LinkedList<Word> removed = new LinkedList<Word>();
-    public static LinkedList<Word> editedWord = new LinkedList<Word>();
 
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Dictionary dictionary = new Dictionary();
         dictionary.listWord.insert("hello", "xin chao");
         dictionary.listWord.insert("dog", "con cho");
