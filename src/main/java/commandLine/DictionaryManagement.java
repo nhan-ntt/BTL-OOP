@@ -41,10 +41,10 @@ public class DictionaryManagement extends Dictionary{
      */
     public static void insertFromFileDICT() {
         try {
-            String content = readFile("resources\\defaultDictionary.dict", Charset.defaultCharset());
+            String content = readFile("src\\main\\resources\\defaultDictionary.dict", Charset.defaultCharset());
             String[] words = content.split("@");
             for (String word : words) {
-                String result[] = word.split("\r?\n", 2);
+                String[] result = word.split("\r?\n", 2);
                 if (result.length > 1) {
                     String wordExplain1 = new String();
                     String wordTarget1 = new String();
@@ -70,12 +70,70 @@ public class DictionaryManagement extends Dictionary{
     }
 
     public static void dictionaryExportToFile() throws IOException {
-        FileWriter fw = new FileWriter("resources\\dictionary.txt");
+        FileWriter fw = new FileWriter("src\\main\\resources\\dictionary.txt");
         List<Word> words = listWord.getAllWords();
         for (Word w : words) {
             fw.write(w.toString());
         }
         fw.close();
+    }
+
+    /**
+     * write file recentWord and favoriteWord.
+     */
+    public static void exportCustomDictionary() throws IOException
+    {
+        FileWriter fw = new FileWriter("src\\main\\resources\\recentWord.txt");
+        for(Word w : recentWord ) {
+            fw.write(w.getWordTarget() + "\n");
+        }
+        fw.close();
+
+        fw = new FileWriter("src\\main\\resources\\favoriteWord.txt");
+        for(Word w : favoriteWord ) {
+            fw.write(w.getWordTarget() + "\n");
+        }
+        fw.close();
+    }
+
+    /**
+     * nhap du lieu cu cua nguoi dung
+     * @throws IOException
+     */
+    public static void importCustomDictionary() throws IOException
+    {
+        // Read favoriteWord.txt
+        File text = new File("src\\main\\resources\\favoriteWord.txt");
+        Scanner sc = new Scanner(text);
+        while (sc.hasNextLine()) {
+            String target = sc.nextLine();
+            if(target.isEmpty()) {
+                break;
+            }
+            Word favWord = lookupWord(target);
+            favoriteWord.addFirst(favWord);
+
+            favWord.setFavorite(true);
+        }
+
+        // Read recentWord.txt
+        text = new File("src\\main\\resources\\recentWord.txt");
+        sc = new Scanner(text);
+        while (sc.hasNextLine()) {
+            String target = sc.nextLine();
+            if(target.isEmpty()) {
+                break;
+            }
+            recentWord.addFirst(lookupWord(target));
+        }
+    }
+
+    public static void resetToDefaultDictionary()
+    {
+        recentWord.clear();
+        favoriteWord.clear();
+        listWord = listWord.clear();
+        insertFromFileDICT();
     }
 
     /**
@@ -87,6 +145,7 @@ public class DictionaryManagement extends Dictionary{
         }
         return new Word(word, listWord.getMeaning(word));
     }
+
 
     public static String addWord(String wordTarget, String wordExplain) {
         listWord.insert(wordTarget, wordExplain);

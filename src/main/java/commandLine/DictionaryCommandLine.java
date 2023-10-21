@@ -1,10 +1,7 @@
 package commandLine;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
+import java.util.*;
 
 public class DictionaryCommandLine extends DictionaryManagement{
     /**
@@ -52,6 +49,7 @@ public class DictionaryCommandLine extends DictionaryManagement{
     }
     public static void dictionaryAdvanced() throws IOException {
         insertFromFileDICT();
+        importCustomDictionary();
         String choice, wordTarget, wordExplain;
         Scanner sc = new Scanner(System.in);
         boolean exit = false;
@@ -67,10 +65,20 @@ public class DictionaryCommandLine extends DictionaryManagement{
                 case "L" :
                     System.out.println("Write a word: ");
                     wordTarget = sc.nextLine();
-                    wordTarget = lookupWord(wordTarget).getWordExplain();
-                    if (!wordTarget.contentEquals("This word is not already existed"))
+                    Word word = lookupWord(wordTarget);
+                    wordExplain = word.getWordExplain();
+                    if (!wordExplain.contentEquals("This word is not already existed"))
                         System.out.println("Explain: ");
-                    System.out.println(wordTarget);
+                    System.out.println(wordExplain);
+
+                    String finalWordTarget = wordTarget;
+                    recentWord.removeIf((Word w) -> w.getWordTarget().equals(finalWordTarget));
+
+                    if (!Objects.equals(word.getWordExplain(), "This word is not already existed")) {
+                        recentWord.addFirst(word);
+                    }
+                    exportCustomDictionary();
+
                     break;
                 case "S" :
                     System.out.println("Write partial word: ");
@@ -94,7 +102,12 @@ public class DictionaryCommandLine extends DictionaryManagement{
                 case "R" :
                     System.out.println("Write a word: ");
                     wordTarget = sc.nextLine();
+                    word = lookupWord(wordTarget);
                     System.out.println(removeWord(wordTarget));
+                    recentWord.remove(word);
+                    favoriteWord.remove(word);
+                    exportCustomDictionary();
+
                     break;
                 case "E" :
                     System.out.println("Write a word in english: ");
