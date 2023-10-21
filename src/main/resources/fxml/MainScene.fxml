@@ -2,15 +2,19 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="552.0" prefWidth="934.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game_Leave_me_out.StartAndSwitchScene">
+
     <children>
         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-        <ImageView fitHeight="589.0" fitWidth="934.0" layoutY="-2.0" onDragDetected="#switchtoIntroduce" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="589.0" fitWidth="934.0" layoutY="-2.0" nodeOrientation="INHERIT" onDragDetected="#switchtoIntroduce" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../../../../UET/BTLOOP/final.jpg" />
             </image>
@@ -23,5 +27,17 @@
             <Shadow color="TRANSPARENT" />
          </effect>
       </Button>
+      <Text fill="#eb4d7d" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I n d e p e n d e n c e" textAlignment="CENTER" wrappingWidth="933.9999912679195">
+
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+          <font>
+          <Font name="Hobo Bold" size="78.0" />
+      </font>
+          <effect>
+            <Glow />
+         </effect>
+      </Text>
     </children>
 </AnchorPane>
