@@ -41,7 +41,7 @@ public class DictionaryManagement extends Dictionary{
      */
     public static void insertFromFileDICT() {
         try {
-            String content = readFile("resources\\defaultDictionary.dict", Charset.defaultCharset());
+            String content = readFile("src\\main\\resources\\defaultDictionary.dict", Charset.defaultCharset());
             String[] words = content.split("@");
             for (String word : words) {
                 String[] result = word.split("\r?\n", 2);
@@ -70,7 +70,7 @@ public class DictionaryManagement extends Dictionary{
     }
 
     public static void dictionaryExportToFile() throws IOException {
-        FileWriter fw = new FileWriter("resources\\dictionary.txt");
+        FileWriter fw = new FileWriter("src\\main\\resources\\dictionary.txt");
         List<Word> words = listWord.getAllWords();
         for (Word w : words) {
             fw.write(w.toString());
@@ -83,13 +83,13 @@ public class DictionaryManagement extends Dictionary{
      */
     public static void exportCustomDictionary() throws IOException
     {
-        FileWriter fw = new FileWriter("resources\\recentWord.txt");
+        FileWriter fw = new FileWriter("src\\main\\resources\\recentWord.txt");
         for(Word w : recentWord ) {
             fw.write(w.getWordTarget() + "\n");
         }
         fw.close();
 
-        fw = new FileWriter("resources\\favoriteWord.txt");
+        fw = new FileWriter("src\\main\\resources\\favoriteWord.txt");
         for(Word w : favoriteWord ) {
             fw.write(w.getWordTarget() + "\n");
         }
@@ -102,10 +102,8 @@ public class DictionaryManagement extends Dictionary{
      */
     public static void importCustomDictionary() throws IOException
     {
-        insertFromFileDICT();
-
         // Read favoriteWord.txt
-        File text = new File("resources\\favoriteWord.txt");
+        File text = new File("src\\main\\resources\\favoriteWord.txt");
         Scanner sc = new Scanner(text);
         while (sc.hasNextLine()) {
             String target = sc.nextLine();
@@ -119,7 +117,7 @@ public class DictionaryManagement extends Dictionary{
         }
 
         // Read recentWord.txt
-        text = new File("resources\\recentWord.txt");
+        text = new File("src\\main\\resources\\recentWord.txt");
         sc = new Scanner(text);
         while (sc.hasNextLine()) {
             String target = sc.nextLine();
@@ -128,6 +126,14 @@ public class DictionaryManagement extends Dictionary{
             }
             recentWord.addFirst(lookupWord(target));
         }
+    }
+
+    public static void resetToDefaultDictionary()
+    {
+        recentWord.clear();
+        favoriteWord.clear();
+        listWord = listWord.clear();
+        insertFromFileDICT();
     }
 
     /**
@@ -139,6 +145,7 @@ public class DictionaryManagement extends Dictionary{
         }
         return new Word(word, listWord.getMeaning(word));
     }
+
 
     public static String addWord(String wordTarget, String wordExplain) {
         listWord.insert(wordTarget, wordExplain);
@@ -153,12 +160,5 @@ public class DictionaryManagement extends Dictionary{
     public static String editWord(String wordTarget, String newMeaning) {
         listWord.changeMeaning(wordTarget, newMeaning);
         return "Edit word successfully!";
-    }
-
-    public static void main(String[] args) throws IOException {
-        DictionaryManagement dictionaryManagement = new DictionaryManagement();
-        dictionaryManagement.insertFromFileDICT();
-        dictionaryManagement.importCustomDictionary();
-        exportCustomDictionary();
     }
 }

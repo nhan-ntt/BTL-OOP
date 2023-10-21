@@ -12,14 +12,8 @@ public class Dictionary {
     public static LinkedList<Word> recentWord = new LinkedList<Word>();
 
     public static void main(String[] args) throws IOException {
-        Dictionary dictionary = new Dictionary();
-        dictionary.listWord.insert("hello", "xin chao");
-        dictionary.listWord.insert("dog", "con cho");
-        dictionary.listWord.insert("hell", "dia nguc");
-        dictionary.listWord.insert("damn", "đem");
-
-        System.out.println(dictionary.listWord.recommendedList("d"));
-        dictionary.listWord.remove("hello");
-        System.out.println(dictionary.listWord.getMeaning("hello"));
+        for (Word word : recentWord) {
+            System.out.println(word.toString());
+        }
     }
 }

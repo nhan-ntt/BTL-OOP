@@ -170,6 +170,9 @@ public class Trie {
         }
     }
 
+    public Trie clear() {
+        return new Trie();
+    }
 
     /**
      * main.
