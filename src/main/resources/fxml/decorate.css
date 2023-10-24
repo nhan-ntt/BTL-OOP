@@ -1,0 +1,16 @@
+@font-face {
+    src: url('HoboBold.ttf');
+}
+
+.letter {
+    -fx-font-family: "Hobo Bold";
+    -fx-font-size: 78;
+    -fx-fill: #eb4d7d;
+}
+
+.border {
+    -fx-border-radius: 10; /* Bán kính của viền, tạo góc tròn */
+    -fx-border-color: #35A3FA; /* Màu viền nét đứt */
+    -fx-border-width: 5; /* Độ rộng của viền */
+    -fx-border-style: dashed; /* Kiểu viền nét đứt */
+}

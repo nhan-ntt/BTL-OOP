@@ -7,8 +7,17 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class RandomWord {
-    public static void main(String[] args) {
-        // Đường dẫn đến tệp RecentWord.txt
+    private String randomWord;
+
+    public String getRandomWord() {
+        return randomWord;
+    }
+
+    public void setRandomWord(String randomWord) {
+        this.randomWord = randomWord;
+    }
+
+    public String findRandomWord() {
         String filePath = "src\\main\\resources\\recentWord.txt";
 
         // Tạo danh sách để lưu các từ từ tệp
@@ -22,7 +31,7 @@ public class RandomWord {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            return;
+            return null;
         }
 
         // Kiểm tra xem danh sách có từ nào không
@@ -34,10 +43,15 @@ public class RandomWord {
             int randomIndex = random.nextInt(words.size());
 
             // Lấy từ tương ứng với chỉ mục ngẫu nhiên
-            String randomWord = words.get(randomIndex);
+            return words.get(randomIndex);
 
         } else {
-            System.out.println("Tệp RecentWord.txt không chứa từ nào.");
+            return null;
         }
+    }
+    public static void main(String[] args) {
+        // Đường dẫn đến tệp RecentWord.txt
+        RandomWord key = new RandomWord();
+        System.out.println(key.findRandomWord());
     }
 }
