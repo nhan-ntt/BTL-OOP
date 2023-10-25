@@ -1,40 +1,40 @@
 package Game_Leave_me_out;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.List;
 
 public class Controller {
+    @FXML
+    private Button startButton; // hoặc @FXML private ImageView clickableImage;
     private Stage stage;
-    private Parent root;
-    private Scene scene;
+    public void initialize(Stage stage) {
+        this.stage = stage;
 
-    public void switchtoIntroduce(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(MainScene.class.getResource("/fxml/Introduce.fxml"));
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        // Gán sự kiện khi chuột được click
+        startButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                openMainScene(event);
+            }
+        });
+
     }
 
-    public void switchtoMain(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(MainScene.class.getResource("/fxml/MainScene.fxml"));
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    public void openMainScene(MouseEvent event) {
+        try {
+            MainScene mainScene = new MainScene();
+            mainScene.start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
     @FXML
     Text wordExercise;
 
@@ -44,5 +44,4 @@ public class Controller {
         wordExercise.setText(word);
 
     }
-
 }

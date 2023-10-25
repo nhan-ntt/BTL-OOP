@@ -15,7 +15,7 @@
             <Image url="@../../../../../../UET/BTLOOP/background_lmo.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="801.0" layoutY="354.0" mnemonicParsing="false" onAction="#switchtoMain" text="Button">
+      <Button fx:id="startButton" layoutX="801.0" layoutY="354.0" mnemonicParsing="false" onAction="#openMainScene" text="Button">
          <effect>
             <Shadow color="TRANSPARENT" />
          </effect>
