@@ -1,5 +1,7 @@
 package Game_Leave_me_out;
 
+import javafx.scene.layout.HBox;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -7,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class RandomWord {
-    private String randomWord;
+    protected String randomWord;
 
     public String getRandomWord() {
         return randomWord;
@@ -17,10 +19,9 @@ public class RandomWord {
         this.randomWord = randomWord;
     }
 
-    public String findRandomWord() {
+    public String WordAddLetter()
+    {
         String filePath = "src\\main\\resources\\recentWord.txt";
-
-        // Tạo danh sách để lưu các từ từ tệp
         ArrayList<String> words = new ArrayList<>();
 
         // Đọc từ tệp và lưu vào danh sách
@@ -30,28 +31,20 @@ public class RandomWord {
                 words.add(line);
             }
         } catch (IOException e) {
-            e.printStackTrace();
             return null;
         }
 
-        // Kiểm tra xem danh sách có từ nào không
-        if (!words.isEmpty()) {
-            // Tạo một đối tượng Random để sinh số ngẫu nhiên
-            Random random = new Random();
+        Random random = new Random();
+        int randomIndex = random.nextInt(words.size());
+        randomWord = words.get(randomIndex);
 
-            // Ngẫu nhiên chọn một chỉ mục từ danh sách
-            int randomIndex = random.nextInt(words.size());
-
-            // Lấy từ tương ứng với chỉ mục ngẫu nhiên
-            return words.get(randomIndex);
-
-        } else {
-            return null;
-        }
+        int randomPosition = random.nextInt(randomWord.length());
+        char randomChar = (char) (random.nextInt(26) + 'a');
+        return randomWord.substring(0, randomPosition) + randomChar + randomWord.substring(randomPosition);
     }
+
     public static void main(String[] args) {
-        // Đường dẫn đến tệp RecentWord.txt
         RandomWord key = new RandomWord();
-        System.out.println(key.findRandomWord());
+        System.out.println(key.WordAddLetter());
     }
 }
