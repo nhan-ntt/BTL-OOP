@@ -27,26 +27,101 @@ import javax.xml.soap.Text;
 import static java.awt.Color.white;
 
 public class MainScene extends Application {
-    private static final int WIDTH = 977;
-    private static final int HEIGHT = 706;
+    private static final int WIDTH = 1280;
+    private static final int HEIGHT = 800;
     private BorderPane commonLayout = new BorderPane();
     private int number= 0;
+
 
     @Override
     public void start(Stage stage) throws IOException {
         try {
             // Tạo cơ cấu giao diện chung với các nút bên dưới
-            createCommonLayout();
 
-            Parent root = FXMLLoader.load(MainScene.class.getResource("/fxml/MainScene.fxml"));
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/fxml/decorate.css").toExternalForm());
+           // Parent root = FXMLLoader.load(MainScene.class.getResource("/fxml/MainScene.fxml"));
 
-            if (root instanceof Pane) {
-                ((Pane) root).getChildren().add(commonLayout);
+
+            RandomWord key = new RandomWord();
+            String word = addletter(key.findRandomWord());
+
+
+            HBox buttonContainer = new HBox(word.length());
+
+            // buttonContainer.setPadding(new Insets(180,30, 150,100));
+
+            // buttonContainer.setPadding(new Insets(90));
+
+            List<Button> buttonList = new ArrayList<>();
+            List<TextController> textControllerList = new ArrayList<>();
+            boolean[] buttonClicked = new boolean[word.length()];
+
+            TranslateTransition[] transitions = new TranslateTransition[word.length()];
+
+
+            for (int i = 0; i < word.length(); i++) {
+                final int index = i;
+
+                Button button = new Button(""+ word.charAt(i));
+                button.getStyleClass().add("letter");
+                button.getStyleClass().add("custom-transparent-button");
+
+                transitions[i] = new TranslateTransition(Duration.seconds(0.001), button);
+                //TranslateTransition transition = new TranslateTransition(Duration.seconds(0.001), button);
+                RotateTransition rotateTransition = new RotateTransition(Duration.seconds(0.001), button);
+                button.setOnAction(event -> {
+                    if (!buttonClicked[index] && number==0) {
+                        for (int j = index+1; j < word.length(); j++) {
+                            {
+                                transitions[j].setToX(-70);
+                                transitions[j].play();
+                            }
+                        }
+                        transitions[index].setToY(250); // Di chuyển nút xuống phía dưới
+                        transitions[index].play();
+                        button.setStyle("-fx-text-fill: white;");
+
+
+                        // Thêm hiệu ứng xoay nút
+                        rotateTransition.setByAngle(290);
+                        rotateTransition.play();
+
+                        buttonClicked[index]=true;
+                        number++;
+                    } else if(buttonClicked[index]){
+                        for (int j = index+1; j < word.length(); j++) {
+                            {
+                                transitions[j].setToX(0);
+                                transitions[j].play();
+                            }
+                        }
+                        transitions[index].setToY(0); // Di chuyển nút xuống phía dưới
+                        transitions[index].play();
+                        button.setStyle("-fx-text-fill:#eb4d7d");
+
+
+                        // Thêm hiệu ứng xoay nút
+                        rotateTransition.setByAngle(70);
+                        rotateTransition.play();
+                        buttonClicked[index]=false;
+                        number--;
+
+                    }
+                });
+
+                buttonList.add(button);
+                buttonContainer.getChildren().add(button);
             }
 
+
+            for (int i = 0; i < buttonList.size(); i++) {
+                TextController textController = new TextController(buttonList.get(i));
+                textControllerList.add(textController);
+            }
+            Scene scene = new Scene(buttonContainer,WIDTH,HEIGHT);
+            scene.getStylesheets().add(getClass().getResource("/fxml/decorate.css").toExternalForm());
             stage.setScene(scene);
+            buttonContainer.setAlignment(Pos.CENTER);
+            buttonContainer.setPadding(new Insets(0, 0, 150, 0));
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,84 +146,5 @@ public class MainScene extends Application {
     }
 
     // Hàm tạo cơ cấu giao diện chung (commonLayout)
-    private void createCommonLayout() {
-        RandomWord key = new RandomWord();
-        String word = addletter(key.findRandomWord());
 
-
-        HBox buttonContainer = new HBox(word.length());
-        buttonContainer.setAlignment(Pos.CENTER);
-
-        buttonContainer.setPadding(new Insets(180,30, 150,100));
-
-       // buttonContainer.setPadding(new Insets(90));
-
-        List<Button> buttonList = new ArrayList<>();
-        List<TextController> textControllerList = new ArrayList<>();
-        boolean[] buttonClicked = new boolean[word.length()];
-
-        TranslateTransition[] transitions = new TranslateTransition[word.length()];
-
-
-        for (int i = 0; i < word.length(); i++) {
-            final int index = i;
-
-            Button button = new Button(""+ word.charAt(i));
-            button.getStyleClass().add("letter");
-            button.getStyleClass().add("custom-transparent-button");
-
-            transitions[i] = new TranslateTransition(Duration.seconds(0.001), button);
-            //TranslateTransition transition = new TranslateTransition(Duration.seconds(0.001), button);
-            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(0.001), button);
-
-            button.setOnAction(event -> {
-                if (!buttonClicked[index] && number==0) {
-                    for (int j = index+1; j < word.length(); j++) {
-                         {
-                            transitions[j].setToX(-70);
-                            transitions[j].play();
-                        }
-                    }
-                    transitions[index].setToY(250); // Di chuyển nút xuống phía dưới
-                    transitions[index].play();
-                    button.setStyle("-fx-text-fill: white;");
-
-
-                    // Thêm hiệu ứng xoay nút
-                    rotateTransition.setByAngle(290);
-                    rotateTransition.play();
-
-                    buttonClicked[index]=true;
-                    number++;
-                } else if(buttonClicked[index]){
-                    for (int j = index+1; j < word.length(); j++) {
-                        {
-                            transitions[j].setToX(0);
-                            transitions[j].play();
-                        }
-                    }
-                    transitions[index].setToY(0); // Di chuyển nút xuống phía dưới
-                    transitions[index].play();
-                    button.setStyle("-fx-text-fill:#eb4d7d");
-
-
-                    // Thêm hiệu ứng xoay nút
-                    rotateTransition.setByAngle(70);
-                    rotateTransition.play();
-                    buttonClicked[index]=false;
-                    number--;
-
-                }
-            });
-            buttonList.add(button);
-            buttonContainer.getChildren().add(button);
-        }
-
-        for (int i = 0; i < buttonList.size(); i++) {
-            TextController textController = new TextController(buttonList.get(i));
-            textControllerList.add(textController);
-        }
-
-        commonLayout.setCenter(buttonContainer);
-    }
 }
