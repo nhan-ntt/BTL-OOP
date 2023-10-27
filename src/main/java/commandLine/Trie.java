@@ -186,7 +186,6 @@ public class Trie {
 
         System.out.println(trie.recommendedList("d"));
         trie.remove("hello");
-        System.out.println(trie.getMeaning("hello"));
         System.out.println(trie.getAllWords());
     }
 
