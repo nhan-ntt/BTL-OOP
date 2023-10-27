@@ -139,13 +139,25 @@ public class DictionaryManagement extends Dictionary{
     /**
      * dictionary lookup.
      */
+//    public static Word lookupWord(String word) {
+//        if (!listWord.contains(word)) {
+//            return new Word(word, "This word is not already existed");
+//        }
+//        return new Word(word, listWord.getMeaning(word));
+//    }
+
     public static Word lookupWord(String word) {
         if (!listWord.contains(word)) {
-            return new Word(word, "This word is not already existed");
+            return null;
         }
         return new Word(word, listWord.getMeaning(word));
     }
 
+    public static void main(String[] args) {
+        insertFromFileDICT();
+        DictionaryManagement dictionaryManagement = new DictionaryManagement();
+        System.out.println(dictionaryManagement.lookupWord("zzz").toString());
+    }
 
     public static String addWord(String wordTarget, String wordExplain) {
         listWord.insert(wordTarget, wordExplain);

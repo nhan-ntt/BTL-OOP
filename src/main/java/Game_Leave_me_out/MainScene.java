@@ -1,42 +1,31 @@
 package Game_Leave_me_out;
-import Game_Leave_me_out.TextController;
-import javafx.scene.layout.*;
-import javafx.scene.text.Text;
 
 import commandLine.Trie;
-import commandLine.Word;
+import javafx.animation.KeyFrame;
 import javafx.animation.RotateTransition;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
+import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-import javafx.geometry.Insets;
-import javafx.util.Duration;
-
-
-import static commandLine.Dictionary.listWord;
+import static commandLine.DictionaryManagement.insertFromFileDICT;
 import static commandLine.DictionaryManagement.lookupWord;
-import static java.awt.Color.white;
-import static java.lang.Math.max;
-import static java.lang.Math.min;
-import static javafx.scene.paint.Color.WHITE;
+import commandLine.Word;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.util.Duration;
+import static javafx.scene.paint.Color.WHITE;
 public class MainScene extends Application {
     private static final int WIDTH = 1280;
     private static final int HEIGHT = 800;
@@ -201,16 +190,24 @@ public class MainScene extends Application {
     // Gọi hàm initializeUI sau mỗi lần Submit
     void Submit(Stage stage) {
         SubmitButton.setOnAction(event -> {
-            if(numberDown==1) {
-                finalWord="";
-                //System.out.println(numberDown +" ");
-                for(int i=0;i<word.length();i++)
-                    if(i!=letterDown) finalWord+=word.charAt(i);
+            if (numberDown == 1) {
+                finalWord = "";
+                // System.out.println(numberDown +" ");
+                for (int i = 0; i < word.length(); i++)
+                    if (i != letterDown) finalWord += word.charAt(i);
                 System.out.println(finalWord);
-                Text();
-                // Đặt lại giao diện sau mỗi lần Submit
-                initializeUI(stage);
+
+                Word wordSearch = lookupWord(finalWord);
+                if (wordSearch != null) {
+                    score += 100;
+                    System.out.println(score);
+                }
             }
+            System.out.println(score);
+            Text();
+            // Đặt lại giao diện sau mỗi lần Submit
+            initializeUI(stage);
+
         });
     }
 
@@ -223,6 +220,7 @@ public class MainScene extends Application {
     }
 
     public static void main(String[] args) {
+        insertFromFileDICT();
         launch(args);
     }
     // Hàm tạo cơ cấu giao diện chung (commonLayout)
