@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Reporter #2';
+    src: url('Reporter.otf');
+}
+.submit-button {
+    -fx-font-family: 'Reporter #2';
+    -fx-font-size: 35;
+    -fx-background-color: #314A06; /* Màu nền xanh lá */
+    -fx-text-fill: #FFFFFF; /* Màu chữ trắng */
+    -fx-background-radius: 35; /* Bo góc tròn */
+    -fx-padding: 5 28; /* Khoảng cách giữa văn bản và biên của nút */
+}

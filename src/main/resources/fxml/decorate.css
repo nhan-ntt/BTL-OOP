@@ -1,16 +1,17 @@
 @font-face {
+    font-family: 'Hobo Bold';
     src: url('HoboBold.ttf');
 }
 
 .letter {
-    -fx-font-family: "Hobo Bold";
-    -fx-font-size: 90;
+    -fx-font-family: 'Hobo Bold';
+    -fx-font-size: 100;
     -fx-text-fill: #eb4d7d;
 }
 
 .letter_white {
-    -fx-font-family: "Hobo Bold";
-    -fx-font-size: 90;
+    -fx-font-family: 'Hobo Bold';
+    -fx-font-size: 100;
     -fx-fill: white;
 }
 
@@ -20,13 +21,16 @@
     -fx-border-width: 5; /* Độ rộng của viền */
     -fx-border-style: dashed; /* Kiểu viền nét đứt */
 }
+
 .custom-transparent-button {
-/* top right bottom left.*/
-    -fx-padding:-2px 12px -2px 12px; /* Điều chỉnh padding */
-    -fx-margin: 0 0px;
+    /* Điều chỉnh padding */
+    -fx-padding: -2px 12px -2px 12px;
     -fx-background-color: transparent;
 }
+
 .root {
     -fx-background-image: url('final.jpg');
     -fx-background-size: 1280px 800px;
 }
+
+

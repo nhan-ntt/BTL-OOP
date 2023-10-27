@@ -40,7 +40,7 @@ public class Controller {
 
     public void Submit() throws IOException {
         RandomWord key = new RandomWord();
-        String word = key.findRandomWord();
+        String word = key.WordAddLetter();
         wordExercise.setText(word);
 
     }
