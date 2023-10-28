@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static commandLine.DictionaryManagement.insertFromFileDICT;
+
 public class Introduce extends Application {
     private static final int WIDTH = 1280;
     private static final int HEIGHT = 800;
@@ -43,6 +45,8 @@ public class Introduce extends Application {
     }
 
     public static void main(String[] args) {
+
+        insertFromFileDICT();
         launch();
     }
 }
