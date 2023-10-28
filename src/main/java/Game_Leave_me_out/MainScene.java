@@ -41,6 +41,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.util.Duration;
 public class MainScene extends Application {
+    private Stage stage;
     private static final int WIDTH = 1280;
     private static final int HEIGHT = 800;
     private int letterDown= -1;
@@ -60,9 +61,9 @@ public class MainScene extends Application {
     RotateTransition[] rotateTransition;
     boolean[] buttonClicked;
     String finalWord;
-    private Text countdownText = new Text("10:00");
+    private Text countdownText = new Text("1:00");
 
-    private int countdownTime = 600; // Đếm ngược từ 10 phút (10 * 60 giây)
+    private int countdownTime = 60; // Đếm ngược từ 10 phút (10 * 60 giây)
     private int elapsedTime = 0;
 
     private Timeline countdown;
@@ -120,13 +121,13 @@ public class MainScene extends Application {
             button.setOnAction(event -> {
                 if (!buttonClicked[index]) {
                     if (numberDown == 0) {
-                        Animation(word.length(), index, button, "-fx-text-fill: white", 375, -70, 290);
+                        Animation(word.length(), index, button, "-fx-text-fill: white", 365, -70, 290);
                         letterDown=index;
                         numberDown++;
                     }
                     else {
 
-                        Animation(word.length(), index, button, "-fx-text-fill: white", 375, -70, 290);
+                        Animation(word.length(), index, button, "-fx-text-fill: white", 365, -70, 290);
                         buttonClicked[index] = true;
                         Button letterDownButton = buttonList.get(letterDown);
                         Animation(word.length(), letterDown, letterDownButton, "-fx-text-fill:#eb4d7d", 0, 0, 0);
@@ -158,7 +159,10 @@ public class MainScene extends Application {
             updateTime(totalTime,elapsedTime);
             updateTime(countdownText,countdownTime);
         } else {
-            countdown.stop(); // Dừng đếm ngược khi hết thời gian
+            EndGame = true;
+            countdown.stop();
+            initializeUI(stage);
+            // Dừng đếm ngược khi hết thời gian
         }
     }
 
@@ -212,7 +216,7 @@ public class MainScene extends Application {
     void LetterFunc(BorderPane root) {
         root.setCenter(buttonContainer);
         buttonContainer.setAlignment(Pos.CENTER);
-        buttonContainer.setPadding(new Insets(0, 0, 85, 0));
+        buttonContainer.setPadding(new Insets(0, 0, 150, 0));
 
     }
     void GameOver(BorderPane root, String style) {
@@ -273,7 +277,7 @@ public class MainScene extends Application {
             LetterFunc(root);
             SubmitAndTime(root);
             InformationFunc(root,"info-text");
-            if(question == numberQuestion)  GameOver(root,"GameOver");
+            if(question == numberQuestion || EndGame)  GameOver(root,"GameOver");
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -301,11 +305,13 @@ public class MainScene extends Application {
                 Text();
                 initializeUI(stage);
             }
+
         });
     }
 
     public void start(Stage stage) throws IOException {
         initializeUI(stage);
+        this.stage=stage;
         countdown = new Timeline(new KeyFrame(Duration.seconds(1), this::updateCountdown));
         countdown.setCycleCount(Timeline.INDEFINITE);
         countdown.play();
