@@ -4,6 +4,7 @@
 }
 .submit-button {
     -fx-border-color: #16380B;
+    -fx-border-width: 3; /* Độ rộng của viền */
     -fx-border-radius: 35;
     -fx-font-family: 'Reporter #2';
     -fx-font-size: 35;

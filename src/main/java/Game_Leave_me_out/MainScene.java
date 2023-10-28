@@ -1,37 +1,54 @@
 package Game_Leave_me_out;
-
+import Game_Leave_me_out.TextController;
+import javafx.scene.layout.*;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.image.Image;
 import commandLine.Trie;
-import javafx.animation.KeyFrame;
+import commandLine.Word;
 import javafx.animation.RotateTransition;
-import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.geometry.Insets;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-
+import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
+import javafx.geometry.Insets;
+import javafx.util.Duration;
+
+
+import static commandLine.Dictionary.listWord;
 import static commandLine.DictionaryManagement.insertFromFileDICT;
 import static commandLine.DictionaryManagement.lookupWord;
-import commandLine.Word;
-
+import static java.awt.Color.white;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+import static javafx.scene.paint.Color.BLACK;
 import static javafx.scene.paint.Color.WHITE;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.util.Duration;
 public class MainScene extends Application {
     private static final int WIDTH = 1280;
     private static final int HEIGHT = 800;
     private int letterDown= -1;
+    private boolean EndGame =false;
     private int numberDown= 0;
     private int score=0;
+    private int question=0;
+    int wrongAnswer;
     private String word;
     Button SubmitButton = new Button("Submit");
 
@@ -46,7 +63,16 @@ public class MainScene extends Application {
     private Text countdownText = new Text("10:00");
 
     private int countdownTime = 600; // Đếm ngược từ 10 phút (10 * 60 giây)
+    private int elapsedTime = 0;
+
     private Timeline countdown;
+    private Text Score =  new Text("Score: 0");
+    private int numberQuestion = 10;
+
+    private Text Question =  new Text("Question: 0/"+numberQuestion);
+
+    private Text WrongAnswer =  new Text("Wrong Answer: 0");
+    Text totalTime = new Text();
 
 
     public void Animation(int leng, int index, Button button, String colorText, double y, double x, double Angle) {
@@ -91,11 +117,9 @@ public class MainScene extends Application {
             button.getStyleClass().add("custom-transparent-button");
 
             transitions[i] = new TranslateTransition(Duration.seconds(0.001), button);
-            //TranslateTransition transition = new TranslateTransition(Duration.seconds(0.001), button);
             button.setOnAction(event -> {
                 if (!buttonClicked[index]) {
                     if (numberDown == 0) {
-
                         Animation(word.length(), index, button, "-fx-text-fill: white", 375, -70, 290);
                         letterDown=index;
                         numberDown++;
@@ -104,7 +128,6 @@ public class MainScene extends Application {
 
                         Animation(word.length(), index, button, "-fx-text-fill: white", 375, -70, 290);
                         buttonClicked[index] = true;
-
                         Button letterDownButton = buttonList.get(letterDown);
                         Animation(word.length(), letterDown, letterDownButton, "-fx-text-fill:#eb4d7d", 0, 0, 0);
                         buttonClicked[letterDown] = false;
@@ -129,26 +152,109 @@ public class MainScene extends Application {
         }
     }
     private void updateCountdown(ActionEvent event) {
-        if (countdownTime > 0) {
+        if (countdownTime > 0 && !EndGame) {
             countdownTime--;
-            updateCountdownText();
+            elapsedTime++;
+            updateTime(totalTime,elapsedTime);
+            updateTime(countdownText,countdownTime);
         } else {
             countdown.stop(); // Dừng đếm ngược khi hết thời gian
-            handleTimeUp();
         }
     }
 
-    private void updateCountdownText() {
-        int minutes = countdownTime / 60;
-        int seconds = countdownTime % 60;
+    private void updateTime(Text text,int time) {
+        int minutes = time / 60;
+        int seconds = time % 60;
 
-        countdownText.setText("" + String.format("%02d:%02d", minutes, seconds));
+        text.setText("" + String.format("%02d:%02d", minutes, seconds));
     }
 
-    private void handleTimeUp() {
-        // Thực hiện hành động khi hết thời gian, ví dụ: kết thúc trò chơi
-        // Ví dụ: hiển thị thông báo "Hết thời gian!"
+    private void InformationFunc(BorderPane root,String style)
+    {
+        HBox infoBox = new HBox();
+
+        VBox mainInfoBox = new VBox();
+        Score.getStyleClass().add(style);
+        Score.setFill(WHITE);
+        Question.getStyleClass().add(style);
+        Question.setFill(WHITE);
+        WrongAnswer.getStyleClass().add(style);
+        WrongAnswer.setFill(WHITE);
+        mainInfoBox.getChildren().addAll(Score,Question,WrongAnswer);
+
+        ImageView scoreImage = new ImageView(new Image(getClass().getResourceAsStream("/fxml/avatar.jpg")));
+        scoreImage.setFitWidth(100);
+        scoreImage.setFitHeight(100);
+
+        infoBox.getChildren().addAll(scoreImage, mainInfoBox);
+        infoBox.setSpacing(10);
+        root.setTop(infoBox);
+        infoBox.setPadding(new Insets(20, 0, 0, 20));
+
     }
+    void SubmitAndTime(BorderPane root) {
+        HBox countdownBox = new HBox();
+        countdownBox.getStyleClass().add("time");
+        countdownText.setFill(WHITE);
+        countdownBox.getChildren().add(countdownText);
+
+        HBox submitBox = new HBox();
+        SubmitButton.getStyleClass().add("submit-button");
+        submitBox.getChildren().add(SubmitButton);
+
+        HBox bottomBox = new HBox();
+        bottomBox.setPadding(new Insets(0, 40, 20, 0));
+        bottomBox.setSpacing(890);
+        bottomBox.setAlignment(Pos.BOTTOM_RIGHT);
+        bottomBox.getChildren().addAll(countdownBox, submitBox);
+        root.setBottom(bottomBox);
+    }
+    void LetterFunc(BorderPane root) {
+        root.setCenter(buttonContainer);
+        buttonContainer.setAlignment(Pos.CENTER);
+        buttonContainer.setPadding(new Insets(0, 0, 85, 0));
+
+    }
+    void GameOver(BorderPane root, String style) {
+        EndGame =true;
+        // Tạo một StackPane để chứa hình ảnh và văn bản
+        StackPane stackPane = new StackPane();
+
+        // Tạo ImageView cho hình ảnh overlay
+        ImageView GameOverImage = new ImageView(new Image(getClass().getResourceAsStream("/fxml/GameOver.png")));
+        GameOverImage.setFitWidth(WIDTH / 1.75);
+        GameOverImage.setFitHeight(HEIGHT / 1.5);
+
+        // Tạo một văn bản
+        Text gameOverText = new Text("Congratulations!");
+        gameOverText.getStyleClass().add("GameOver");
+        gameOverText.getStyleClass().add("Congratulations"); // Đặt lớp CSS cho văn bản nếu cần
+        gameOverText.setTranslateX(-40);
+
+        VBox GameOverBox = new VBox();
+        GameOverBox.setSpacing(20);
+
+        Text FinalScore = new Text("Score: " + score + " points");
+        FinalScore.getStyleClass().add("GameOver");
+        updateTime(totalTime, elapsedTime);
+
+        totalTime.getStyleClass().add("time");
+        totalTime.setFill(WHITE);
+        totalTime.setTranslateX(40);
+        totalTime.setTranslateY(10);
+        GameOverBox.getChildren().addAll(gameOverText, FinalScore, totalTime);
+
+        GameOverBox.setPadding(new Insets(250, 0, 0, 550));
+
+        // Thêm hình ảnh và văn bản vào StackPane
+        stackPane.getChildren().addAll(GameOverImage, GameOverBox);
+
+        // Đặt StackPane vào trung tâm của BorderPane
+        root.setCenter(stackPane);
+    }
+
+
+
 
     // Tạo một hàm để khởi tạo lại giao diện
     public void initializeUI(Stage stage) {
@@ -156,63 +262,49 @@ public class MainScene extends Application {
             Text();
             Submit(stage);
             BorderPane root = new BorderPane();
-            root.setCenter(buttonContainer);
-            buttonContainer.setAlignment(Pos.CENTER);
-            buttonContainer.setPadding(new Insets(0, 0, 85, 0));
 
             Scene scene = new Scene(root, WIDTH, HEIGHT);
             scene.getStylesheets().add(getClass().getResource("/fxml/decorate.css").toExternalForm());
             scene.getStylesheets().add(getClass().getResource("/fxml/TimeAndSubmit.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/fxml/Inform.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/fxml/GameOver.css").toExternalForm());
             stage.setScene(scene);
 
-            HBox countdownBox = new HBox();
-            countdownBox.getStyleClass().add("time");
-            countdownText.setFill(WHITE);
-            countdownBox.getChildren().add(countdownText);
-
-            HBox submitBox = new HBox();
-            SubmitButton.getStyleClass().add("submit-button");
-            submitBox.getChildren().add(SubmitButton);
-
-            HBox bottomBox = new HBox();
-            bottomBox.setPadding(new Insets(0, 40, 20, 0));
-            bottomBox.setSpacing(900);
-            bottomBox.setAlignment(Pos.BOTTOM_RIGHT);
-            bottomBox.getChildren().addAll(countdownBox, submitBox);
-
-            root.setBottom(bottomBox);
+            LetterFunc(root);
+            SubmitAndTime(root);
+            InformationFunc(root,"info-text");
+            if(question == numberQuestion)  GameOver(root,"GameOver");
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    // Gọi hàm initializeUI sau mỗi lần Submit
+    void updateMainInfo() {
+        finalWord = "";
+        for (int i = 0; i < word.length(); i++)
+            if (i != letterDown) finalWord += word.charAt(i);
+        Word wordSearch = lookupWord(finalWord);
+        if (wordSearch != null) {
+            score += 10;
+        }
+        else wrongAnswer++;
+        question++;
+        Score.setText("Score: " + score);
+        Question.setText("Question: " + question + "/" + numberQuestion);
+        WrongAnswer.setText("Wrong Answers: " + wrongAnswer);
+    }
     void Submit(Stage stage) {
         SubmitButton.setOnAction(event -> {
-            if (numberDown == 1) {
-                finalWord = "";
-                // System.out.println(numberDown +" ");
-                for (int i = 0; i < word.length(); i++)
-                    if (i != letterDown) finalWord += word.charAt(i);
-                System.out.println(finalWord);
-
-                Word wordSearch = lookupWord(finalWord);
-                if (wordSearch != null) {
-                    score += 100;
-                    System.out.println(score);
-                }
+            if (!EndGame && numberDown == 1) {
+                updateMainInfo();
+                Text();
+                initializeUI(stage);
             }
-            System.out.println(score);
-            Text();
-            // Đặt lại giao diện sau mỗi lần Submit
-            initializeUI(stage);
-
         });
     }
 
     public void start(Stage stage) throws IOException {
-        // Khởi tạo giao diện ban đầu
         initializeUI(stage);
         countdown = new Timeline(new KeyFrame(Duration.seconds(1), this::updateCountdown));
         countdown.setCycleCount(Timeline.INDEFINITE);
@@ -223,6 +315,4 @@ public class MainScene extends Application {
         insertFromFileDICT();
         launch(args);
     }
-    // Hàm tạo cơ cấu giao diện chung (commonLayout)
-
 }
