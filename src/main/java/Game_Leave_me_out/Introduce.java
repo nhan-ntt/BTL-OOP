@@ -1,4 +1,6 @@
 package Game_Leave_me_out;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,10 +19,24 @@ import static commandLine.DictionaryManagement.insertFromFileDICT;
 public class Introduce extends Application {
     private static final int WIDTH = 1280;
     private static final int HEIGHT = 800;
-    Button StartButton = new Button("Start");
+    private boolean isSoundEnabled = true;
+    Media sound = new Media(getClass().getResource("/fxml/Duck.mp3").toString());
 
+    Button StartButton = new Button("Start");
+    MediaPlayer mediaPlayer = new MediaPlayer(sound);
+
+    void Music() {
+
+        // Khởi tạo đối tượng MediaPlayer với đối tượng Media
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+
+        // Phát nhạc khi game bắt đầu
+        mediaPlayer.play();
+
+    }
     @Override
     public void start(Stage stage) throws IOException {
+        Music();
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, WIDTH,HEIGHT);
         scene.getStylesheets().add(getClass().getResource("/fxml/introduce.css").toExternalForm());
@@ -35,6 +52,7 @@ public class Introduce extends Application {
             MainScene mainScene = new MainScene();
             try {
                 mainScene.start(stage);
+                mediaPlayer.stop();
             } catch (IOException e) {
                 e.printStackTrace();
             }

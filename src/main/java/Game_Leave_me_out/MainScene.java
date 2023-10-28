@@ -5,6 +5,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.image.Image;
 import commandLine.Trie;
+import javafx.scene.text.Font;
 import commandLine.Word;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
@@ -22,7 +23,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.geometry.Insets;
 import javafx.util.Duration;
 
@@ -33,8 +35,7 @@ import static commandLine.DictionaryManagement.lookupWord;
 import static java.awt.Color.white;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
-import static javafx.scene.paint.Color.BLACK;
-import static javafx.scene.paint.Color.WHITE;
+import static javafx.scene.paint.Color.*;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -42,6 +43,8 @@ import javafx.event.ActionEvent;
 import javafx.util.Duration;
 public class MainScene extends Application {
     private Stage stage;
+    boolean isSoundEnabled =true;
+
     private static final int WIDTH = 1280;
     private static final int HEIGHT = 800;
     private int letterDown= -1;
@@ -74,7 +77,8 @@ public class MainScene extends Application {
 
     private Text WrongAnswer =  new Text("Wrong Answer: 0");
     Text totalTime = new Text();
-
+    Media sound = new Media(getClass().getResource("/fxml/Duck.mp3").toString());
+    MediaPlayer mediaPlayer = new MediaPlayer(sound);
 
     public void Animation(int leng, int index, Button button, String colorText, double y, double x, double Angle) {
         button.setTranslateX(0);
@@ -99,7 +103,6 @@ public class MainScene extends Application {
         rotateTransition[index].play();
     }
     Trie listWord = new Trie();
-
     public void Text() {
         buttonList.clear();
         buttonContainer.getChildren().clear();
@@ -172,10 +175,39 @@ public class MainScene extends Application {
 
         text.setText("" + String.format("%02d:%02d", minutes, seconds));
     }
+    void Music() {
+        if (isSoundEnabled) {
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.play();
+        }
+    }
+
+    void checkSound(Button sound) {
+
+        sound.setOnAction(event -> {
+            if (isSoundEnabled) {
+                mediaPlayer.stop(); // Dừng phát âm thanh
+                isSoundEnabled = false; // Đặt biến kiểm soát thành false
+                sound.setTextFill(WHITE);
+
+            } else {
+                mediaPlayer.play(); // Phát âm thanh
+                isSoundEnabled = true; // Đặt biến kiểm soát thành true
+                sound.setTextFill(TRANSPARENT);
+            }
+        });
+    }
 
     private void InformationFunc(BorderPane root,String style)
     {
         HBox infoBox = new HBox();
+
+        Button sound = new Button("/");
+        sound.setTextFill(TRANSPARENT);
+        checkSound(sound);
+        sound.setTranslateX(837);
+        sound.setTranslateY(-30);
+        sound.getStyleClass().add("sound");
 
         VBox mainInfoBox = new VBox();
         Score.getStyleClass().add(style);
@@ -190,7 +222,7 @@ public class MainScene extends Application {
         scoreImage.setFitWidth(100);
         scoreImage.setFitHeight(100);
 
-        infoBox.getChildren().addAll(scoreImage, mainInfoBox);
+        infoBox.getChildren().addAll(scoreImage, mainInfoBox,sound);
         infoBox.setSpacing(10);
         root.setTop(infoBox);
         infoBox.setPadding(new Insets(20, 0, 0, 20));
@@ -311,6 +343,7 @@ public class MainScene extends Application {
 
     public void start(Stage stage) throws IOException {
         initializeUI(stage);
+        Music();
         this.stage=stage;
         countdown = new Timeline(new KeyFrame(Duration.seconds(1), this::updateCountdown));
         countdown.setCycleCount(Timeline.INDEFINITE);

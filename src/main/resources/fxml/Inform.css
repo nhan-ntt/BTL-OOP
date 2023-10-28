@@ -12,3 +12,7 @@
     -fx-border-color: white; /* Màu viền */
     -fx-border-width: 1; /* Độ rộng viền */
 }
+.sound {
+    -fx-font-size: 55px;
+    -fx-background-color: transparent;
+}
