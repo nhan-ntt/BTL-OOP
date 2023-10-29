@@ -181,7 +181,17 @@ public class MainScene extends Application {
             mediaPlayer.play();
         }
     }
+    void SoundCorect() {
+        Media correct = new Media(getClass().getResource("/fxml/correct.mp3").toString());
+        MediaPlayer Player = new MediaPlayer(correct);
+        Player.play();
+    }
+    void SoundWrong() {
+        Media wrong = new Media(getClass().getResource("/fxml/DuckWrong.wav").toString());
+        MediaPlayer PlayerW = new MediaPlayer(wrong);
+        PlayerW.play();
 
+    }
     void checkSound(Button sound) {
 
         sound.setOnAction(event -> {
@@ -323,8 +333,12 @@ public class MainScene extends Application {
         Word wordSearch = lookupWord(finalWord);
         if (wordSearch != null) {
             score += 10;
+            SoundCorect();
         }
-        else wrongAnswer++;
+        else {
+            wrongAnswer++;
+            SoundWrong();
+        }
         question++;
         Score.setText("Score: " + score);
         Question.setText("Question: " + question + "/" + numberQuestion);
@@ -343,7 +357,7 @@ public class MainScene extends Application {
 
     public void start(Stage stage) throws IOException {
         initializeUI(stage);
-        Music();
+        //Music();
         this.stage=stage;
         countdown = new Timeline(new KeyFrame(Duration.seconds(1), this::updateCountdown));
         countdown.setCycleCount(Timeline.INDEFINITE);
