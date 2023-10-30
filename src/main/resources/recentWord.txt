@@ -1,6 +1,11 @@
 hello
+shift
+hi
 crocodile
-bird
 import
 bridge
 quick
+bird
+pillow
+exit
+introduce

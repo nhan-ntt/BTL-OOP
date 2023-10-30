@@ -106,12 +106,12 @@ public class Trie {
         for (int i = 0; i < wordTarget.length(); i++) {
             char c = wordTarget.charAt(i);
             if (!node.children.containsKey(c)) {
-                return "not found ψ(｀∇´)ψ";
+                return "not found";
             }
             node = node.children.get(c);
         }
         if (node == null || node.meaning == null) {
-            return "not found ψ(｀∇´)ψ";
+            return "not found";
         }
         return node.meaning;
     }
@@ -186,7 +186,6 @@ public class Trie {
 
         System.out.println(trie.recommendedList("d"));
         trie.remove("hello");
-        System.out.println(trie.getMeaning("hello"));
         System.out.println(trie.getAllWords());
     }
 

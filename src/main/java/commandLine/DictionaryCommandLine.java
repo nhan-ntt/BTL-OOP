@@ -66,7 +66,8 @@ public class DictionaryCommandLine extends DictionaryManagement{
                     System.out.println("Write a word: ");
                     wordTarget = sc.nextLine();
                     Word word = lookupWord(wordTarget);
-                    wordExplain = word.getWordExplain();
+                     wordExplain = word.getWordExplain();
+
                     if (!wordExplain.contentEquals("This word is not already existed"))
                         System.out.println("Explain: ");
                     System.out.println(wordExplain);
