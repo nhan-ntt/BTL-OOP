@@ -112,7 +112,6 @@ public class searchController implements Initializable {
         exportCustomDictionary();
     }
 
-
     public void handleFavorite(MouseEvent mouseEvent) throws IOException {
         if (wordTarget.getText().isEmpty()) return;
         String wordTarget = this.wordTarget.getText();
@@ -127,6 +126,8 @@ public class searchController implements Initializable {
     }
 
     public void handleSpeak(MouseEvent mouseEvent) {
+
+
     }
 
     public void handleDelete(MouseEvent mouseEvent) {
