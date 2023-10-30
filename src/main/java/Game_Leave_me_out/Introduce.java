@@ -36,13 +36,15 @@ public class Introduce extends Application {
     }
     @Override
     public void start(Stage stage) throws IOException {
+        insertFromFileDICT();
+
         Music();
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, WIDTH,HEIGHT);
-        scene.getStylesheets().add(getClass().getResource("/fxml/introduce.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/fxml/Introduce.css").toExternalForm());
 
         HBox startBox = new HBox();
-        startBox.setPadding(new Insets(0, 0, 247, 1100));
+        startBox.setPadding(new Insets(0, 0, 150, 1100));
         StartButton.getStyleClass().add("transparent-button");
         startBox.getChildren().add(StartButton);
         root.setBottom(startBox);
