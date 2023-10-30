@@ -7,19 +7,27 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="358.0" prefWidth="661.0" style="-fx-background-color: FFF6F6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="358.0" prefWidth="661.0" style="-fx-background-color: FFF6F6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dictionaryGUI.searchController">
    <children>
-      <TextField layoutX="120.0" layoutY="21.0" prefHeight="35.0" prefWidth="421.0" style="-fx-border-color: purple; -fx-background-color: white;" />
+      <TextField fx:id="searchTerm" layoutX="120.0" layoutY="21.0" prefHeight="35.0" prefWidth="421.0" promptText="nhập từ cần tìm kiếm..." style="-fx-border-color: purple; -fx-background-color: white;" />
       <Pane layoutX="29.0" layoutY="79.0" prefHeight="43.0" prefWidth="379.0" style="-fx-background-color: FFDFDF;">
          <children>
-            <Label layoutX="37.0" layoutY="13.0" text="word" />
-            <Button layoutX="255.0" layoutY="6.0" mnemonicParsing="false" text="edit" />
-            <Button layoutX="318.0" layoutY="6.0" mnemonicParsing="false" text="delete" />
-            <Button layoutX="191.0" layoutY="6.0" mnemonicParsing="false" text="star" />
+            <Button fx:id="editBtn" layoutX="255.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#handleEdit" text="edit" />
+            <Button fx:id="deleteBtn" layoutX="318.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#handleDelete" text="delete" />
+            <Button fx:id="volumeBtn" layoutX="118.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#handleSpeak" text="phat am" />
+            <Button fx:id="starBtn" layoutX="193.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#handleFavorite" text="star" />
+            <Label fx:id="wordTarget" layoutX="24.0" layoutY="1.0">
+               <font>
+                  <Font name="Dosis ExtraBold" size="31.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-      <ListView layoutX="419.0" layoutY="79.0" prefHeight="267.0" prefWidth="232.0" style="-fx-background-color: FFDFDF;" />
-      <TextArea layoutX="29.0" layoutY="132.0" prefHeight="211.0" prefWidth="379.0" />
+      <ListView fx:id="recList" layoutX="419.0" layoutY="79.0" onMouseClicked="#handleMouseClickAWord" prefHeight="267.0" prefWidth="232.0" />
+      <TextArea fx:id="wordExplain" layoutX="29.0" layoutY="132.0" prefHeight="211.0" prefWidth="379.0" />
+      <Label fx:id="notAvailable" layoutX="30.0" layoutY="29.0" text="not available" />
+      <Button fx:id="saveBtn" layoutX="342.0" layoutY="147.0" mnemonicParsing="false" onMouseClicked="#handleSave" text="save" />
    </children>
 </AnchorPane>

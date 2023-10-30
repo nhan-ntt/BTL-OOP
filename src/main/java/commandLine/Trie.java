@@ -173,20 +173,4 @@ public class Trie {
     public Trie clear() {
         return new Trie();
     }
-
-    /**
-     * main.
-     */
-    public static void main(String[] args) {
-        Trie trie = new Trie();
-        trie.insert("hello", "xin chao");
-        trie.insert("dog", "con cho");
-        trie.insert("hell", "dia nguc");
-        trie.insert("damn", "đem");
-
-        System.out.println(trie.recommendedList("d"));
-        trie.remove("hello");
-        System.out.println(trie.getAllWords());
-    }
-
 }

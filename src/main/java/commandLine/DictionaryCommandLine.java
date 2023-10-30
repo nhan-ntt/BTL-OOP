@@ -18,16 +18,6 @@ public class DictionaryCommandLine extends DictionaryManagement{
     }
 
 
-    public static List<Word> dictionarySearcher(String word) {
-        return listWord.recommendedList(word);
-//        int id = 0;
-//        for (Word w : recommendedList) {
-//            id++;
-//            System.out.printf("%-10d| %-20s| %s\n", id, w.getWordTarget(), w.getWordExplain());
-//        }
-    }
-
-
 
     /**
      * dictionary basic.

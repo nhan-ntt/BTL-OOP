@@ -128,6 +128,15 @@ public class DictionaryManagement extends Dictionary{
         }
     }
 
+    public static List<Word> dictionarySearcher(String word) {
+        return listWord.recommendedList(word);
+//        int id = 0;
+//        for (Word w : recommendedList) {
+//            id++;
+//            System.out.printf("%-10d| %-20s| %s\n", id, w.getWordTarget(), w.getWordExplain());
+//        }
+    }
+
     public static void resetToDefaultDictionary()
     {
         recentWord.clear();
@@ -155,8 +164,7 @@ public class DictionaryManagement extends Dictionary{
 
     public static void main(String[] args) {
         insertFromFileDICT();
-        DictionaryManagement dictionaryManagement = new DictionaryManagement();
-        System.out.println(dictionaryManagement.lookupWord("zzz").toString());
+        System.out.println(listWord.getAllWords().get(0));
     }
 
     public static String addWord(String wordTarget, String wordExplain) {
