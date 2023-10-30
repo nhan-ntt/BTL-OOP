@@ -77,9 +77,9 @@ public class MainScene extends Application {
 
     private Text WrongAnswer =  new Text("Wrong Answer: 0");
     Text totalTime = new Text();
-    Media sound = new Media(getClass().getResource("/fxml/Duck.mp3").toString());
+    Media sound = new Media(getClass().getResource("/fxml/cute.mp3").toString());
+    MediaPlayer mediaPlayerBackground = new MediaPlayer(sound);
     MediaPlayer mediaPlayer = new MediaPlayer(sound);
-
     public void Animation(int leng, int index, Button button, String colorText, double y, double x, double Angle) {
         button.setTranslateX(0);
         button.setTranslateY(0);
@@ -177,21 +177,36 @@ public class MainScene extends Application {
     }
     void Music() {
         if (isSoundEnabled) {
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-            mediaPlayer.play();
+            mediaPlayerBackground.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayerBackground.setVolume(0.25);
+            mediaPlayerBackground.play();
         }
     }
+    void SoundCorect() {
+        if (!isSoundEnabled) return;
+        Media correct = new Media(getClass().getResource("/fxml/correct.mp3").toString());
+        mediaPlayer = new MediaPlayer(correct);
+        mediaPlayer.play();
+    }
+    void SoundWrong() {
+        if (!isSoundEnabled) return;
+        Media wrong = new Media(getClass().getResource("/fxml/DuckWrong.wav").toString());
+        mediaPlayer = new MediaPlayer(wrong);
+        mediaPlayer.play();
 
+    }
     void checkSound(Button sound) {
 
         sound.setOnAction(event -> {
             if (isSoundEnabled) {
+                mediaPlayerBackground.stop();
                 mediaPlayer.stop(); // Dừng phát âm thanh
                 isSoundEnabled = false; // Đặt biến kiểm soát thành false
                 sound.setTextFill(WHITE);
 
             } else {
-                mediaPlayer.play(); // Phát âm thanh
+                mediaPlayerBackground.play();
+                mediaPlayerBackground.setVolume(0.25);
                 isSoundEnabled = true; // Đặt biến kiểm soát thành true
                 sound.setTextFill(TRANSPARENT);
             }
@@ -203,11 +218,11 @@ public class MainScene extends Application {
         HBox infoBox = new HBox();
 
         Button sound = new Button("/");
-        sound.setTextFill(TRANSPARENT);
+        if (isSoundEnabled) sound.setTextFill(TRANSPARENT); else sound.setTextFill(WHITE);
+        sound.getStyleClass().add("sound");
         checkSound(sound);
         sound.setTranslateX(837);
         sound.setTranslateY(-30);
-        sound.getStyleClass().add("sound");
 
         VBox mainInfoBox = new VBox();
         Score.getStyleClass().add(style);
@@ -323,8 +338,12 @@ public class MainScene extends Application {
         Word wordSearch = lookupWord(finalWord);
         if (wordSearch != null) {
             score += 10;
+            SoundCorect();
         }
-        else wrongAnswer++;
+        else {
+            wrongAnswer++;
+            SoundWrong();
+        }
         question++;
         Score.setText("Score: " + score);
         Question.setText("Question: " + question + "/" + numberQuestion);
