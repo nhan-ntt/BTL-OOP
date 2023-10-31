@@ -27,14 +27,14 @@ public class TimeController {
     }
 
     private void updateCountdown(ActionEvent event,UIManager uiManager) {
-        if (countdownTime > 0 ) {
+        if (countdownTime > 0 && !uiManager.checkEndGame()) {
             countdownTime--;
             elapsedTime++;
             updateTime(totalTime, elapsedTime);
             updateTime(countdownText, countdownTime);
         } else {
             countdown.stop();
-            uiManager.checkTime();
+            uiManager.EndTime();
         }
     }
 

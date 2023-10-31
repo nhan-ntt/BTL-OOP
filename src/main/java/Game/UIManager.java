@@ -140,11 +140,12 @@ public class UIManager {
            initializeUI(stage);
         });
     }
-    void checkTime() {
-        if(!gameManager.isEndGame()) {
+    boolean checkEndGame() {
+        return gameManager.isEndGame();
+    }
+    void EndTime() {
             gameManager.setEndGame(true);
             initializeUI(stage);
-        }
     }
     public void initializeUI(Stage stage) {
         try {

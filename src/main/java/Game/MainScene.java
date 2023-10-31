@@ -29,7 +29,7 @@ public class MainScene extends Application {
         gameManager = new GameManager();
         gameManager.initializeGame();
 
-        TimeController timeController = new TimeController("1:00",2);
+        TimeController timeController = new TimeController("1:00",60);
 
         uiManager = new UIManager(stage, gameManager,timeController);
         timeController.startTimer(uiManager);
