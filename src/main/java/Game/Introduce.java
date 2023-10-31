@@ -1,6 +1,4 @@
-package Game_Leave_me_out;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+package Game;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -8,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,7 +18,7 @@ public class Introduce extends Application {
     private static final int WIDTH = 1280;
     private static final int HEIGHT = 800;
     private boolean isSoundEnabled = true;
-    Media sound = new Media(getClass().getResource("/fxml/CSS/Sound/Duck.mp3").toString());
+    Media sound = new Media(getClass().getResource("/fxml/Sound/Duck.mp3").toString());
 
     Button StartButton = new Button("Start");
     MediaPlayer mediaPlayer = new MediaPlayer(sound);
@@ -37,7 +37,7 @@ public class Introduce extends Application {
         Music();
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, WIDTH,HEIGHT);
-        scene.getStylesheets().add(getClass().getResource("/fxml/introduce.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/fxml/CSS/introduce.css").toExternalForm());
 
         HBox startBox = new HBox();
         startBox.setPadding(new Insets(0, 0, 247, 1100));

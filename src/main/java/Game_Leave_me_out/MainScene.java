@@ -1,38 +1,30 @@
 package Game_Leave_me_out;
-import Game_Leave_me_out.TextController;
 import javafx.scene.layout.*;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.image.Image;
 import commandLine.Trie;
-import javafx.scene.text.Font;
 import commandLine.Word;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import java.awt.*;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.geometry.Insets;
 import javafx.util.Duration;
 
 
-import static commandLine.Dictionary.listWord;
 import static commandLine.DictionaryManagement.insertFromFileDICT;
 import static commandLine.DictionaryManagement.lookupWord;
-import static java.awt.Color.white;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 import static javafx.scene.paint.Color.*;
@@ -40,7 +32,7 @@ import static javafx.scene.paint.Color.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
-import javafx.util.Duration;
+
 public class MainScene extends Application {
     private Stage stage;
     boolean isSoundEnabled =true;
@@ -77,7 +69,7 @@ public class MainScene extends Application {
 
     private Text WrongAnswer =  new Text("Wrong Answer: 0");
     Text totalTime = new Text();
-    Media sound = new Media(getClass().getResource("/fxml/cute.mp3").toString());
+    Media sound = new Media(getClass().getResource("/fxml/Sound/cute.mp3").toString());
     MediaPlayer mediaPlayerBackground = new MediaPlayer(sound);
     MediaPlayer mediaPlayer = new MediaPlayer(sound);
     public void Animation(int leng, int index, Button button, String colorText, double y, double x, double Angle) {
@@ -164,7 +156,6 @@ public class MainScene extends Application {
         } else {
             EndGame = true;
             countdown.stop();
-            initializeUI(stage);
             // Dừng đếm ngược khi hết thời gian
         }
     }
@@ -184,13 +175,13 @@ public class MainScene extends Application {
     }
     void SoundCorect() {
         if (!isSoundEnabled) return;
-        Media correct = new Media(getClass().getResource("/fxml/correct.mp3").toString());
+        Media correct = new Media(getClass().getResource("/fxml/Sound/correct.mp3").toString());
         mediaPlayer = new MediaPlayer(correct);
         mediaPlayer.play();
     }
     void SoundWrong() {
         if (!isSoundEnabled) return;
-        Media wrong = new Media(getClass().getResource("/fxml/DuckWrong.wav").toString());
+        Media wrong = new Media(getClass().getResource("/fxml/Sound/DuckWrong.wav").toString());
         mediaPlayer = new MediaPlayer(wrong);
         mediaPlayer.play();
 
@@ -233,7 +224,7 @@ public class MainScene extends Application {
         WrongAnswer.setFill(WHITE);
         mainInfoBox.getChildren().addAll(Score,Question,WrongAnswer);
 
-        ImageView scoreImage = new ImageView(new Image(getClass().getResourceAsStream("/fxml/avatar.jpg")));
+        ImageView scoreImage = new ImageView(new Image(getClass().getResourceAsStream("/fxml/Image/avatar.jpg")));
         scoreImage.setFitWidth(100);
         scoreImage.setFitHeight(100);
 
@@ -272,7 +263,7 @@ public class MainScene extends Application {
         StackPane stackPane = new StackPane();
 
         // Tạo ImageView cho hình ảnh overlay
-        ImageView GameOverImage = new ImageView(new Image(getClass().getResourceAsStream("/fxml/GameOver.png")));
+        ImageView GameOverImage = new ImageView(new Image(getClass().getResourceAsStream("/fxml/Image/GameOver.png")));
         GameOverImage.setFitWidth(WIDTH / 1.75);
         GameOverImage.setFitHeight(HEIGHT / 1.5);
 
@@ -315,10 +306,10 @@ public class MainScene extends Application {
             BorderPane root = new BorderPane();
 
             Scene scene = new Scene(root, WIDTH, HEIGHT);
-            scene.getStylesheets().add(getClass().getResource("/fxml/decorate.css").toExternalForm());
-            scene.getStylesheets().add(getClass().getResource("/fxml/TimeAndSubmit.css").toExternalForm());
-            scene.getStylesheets().add(getClass().getResource("/fxml/Inform.css").toExternalForm());
-            scene.getStylesheets().add(getClass().getResource("/fxml/GameOver.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/fxml/CSS/decorate.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/fxml/CSS/TimeAndSubmit.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/fxml/CSS/Inform.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/fxml/CSS/GameOver.css").toExternalForm());
             stage.setScene(scene);
 
             LetterFunc(root);
