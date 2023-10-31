@@ -13,30 +13,28 @@ public class TimeController {
     private int elapsedTime =0;
     private Timeline countdown = new Timeline();
     private Text countdownText = new Text();;
-    private Text totalTime = new Text();;
-    private GameManager gameManager = new GameManager();
-    public TimeController(String countdown, int countdownTime,GameManager gameManager) {
+    private Text totalTime = new Text();
+    public TimeController(String countdown, int countdownTime) {
         this.countdownTime = countdownTime;
         this.elapsedTime = 0;
-        this.countdown = new Timeline(new KeyFrame(Duration.seconds(1), this::updateCountdown));
         this.countdownText = new Text(countdown);
-        this.gameManager = gameManager;
     }
 
-    public void startTimer() {
+    public void startTimer(UIManager uiManager) {
+        this.countdown = new Timeline(new KeyFrame(Duration.seconds(1),event ->  updateCountdown(event,uiManager)));
         countdown.setCycleCount(Timeline.INDEFINITE);
         countdown.play();
     }
 
-    private void updateCountdown(ActionEvent event) {
-        if (countdownTime > 0 && !gameManager.isEndGame()) {
+    private void updateCountdown(ActionEvent event,UIManager uiManager) {
+        if (countdownTime > 0 ) {
             countdownTime--;
             elapsedTime++;
             updateTime(totalTime, elapsedTime);
             updateTime(countdownText, countdownTime);
         } else {
             countdown.stop();
-            gameManager.setEndGame(true);
+            uiManager.checkTime();
         }
     }
 
@@ -53,6 +51,18 @@ public class TimeController {
 
     public void setCountdownText(Text countdownText) {
         this.countdownText = countdownText;
+    }
+
+    public int getCountdownTime() {
+        return countdownTime;
+    }
+
+    public Timeline getCountdown() {
+        return countdown;
+    }
+
+    public void setCountdown(Timeline countdown) {
+        this.countdown = countdown;
     }
 
     public Text getTotalTime() {

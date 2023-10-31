@@ -13,13 +13,17 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.awt.event.ActionEvent;
+
 import static javafx.scene.paint.Color.TRANSPARENT;
 import static javafx.scene.paint.Color.WHITE;
 
 public class UIManager {
+    public static final int WIDTH = 1280;
+    public static final int HEIGHT = 800;
     private Stage stage = new Stage();
     private GameManager gameManager = new GameManager();
-    TimeController timeController = new TimeController("1:00",60,gameManager);
+    TimeController timeController = new TimeController("1:00",60);
 
     Button SubmitButton = new Button("Submit");
     Button sound=new Button("/");
@@ -39,8 +43,8 @@ public class UIManager {
 
         // Tạo ImageView cho hình ảnh overlay
         ImageView GameOverImage = new ImageView(new Image(getClass().getResourceAsStream("/fxml/Image/GameOver.png")));
-        GameOverImage.setFitWidth(GameManager.WIDTH / 1.75);
-        GameOverImage.setFitHeight(GameManager.HEIGHT / 1.5);
+        GameOverImage.setFitWidth(WIDTH / 1.75);
+        GameOverImage.setFitHeight(HEIGHT / 1.5);
 
         // Tạo một văn bản
         Text gameOverText = new Text("Congratulations!");
@@ -136,12 +140,18 @@ public class UIManager {
            initializeUI(stage);
         });
     }
+    void checkTime() {
+        if(!gameManager.isEndGame()) {
+            gameManager.setEndGame(true);
+            initializeUI(stage);
+        }
+    }
     public void initializeUI(Stage stage) {
         try {
             Submit();
             checkSound();
             BorderPane root = new BorderPane();
-            Scene scene = new Scene(root, GameManager.WIDTH, GameManager.HEIGHT);
+            Scene scene = new Scene(root, WIDTH, HEIGHT);
 
             scene.getStylesheets().add(getClass().getResource("/fxml/CSS/decorate.css").toExternalForm());
             scene.getStylesheets().add(getClass().getResource("/fxml/CSS/TimeAndSubmit.css").toExternalForm());

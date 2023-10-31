@@ -5,8 +5,7 @@ import javafx.scene.control.Button;
 import static commandLine.DictionaryManagement.lookupWord;
 
 public class GameManager {
-    public static final int WIDTH = 1280;
-    public static final int HEIGHT = 800;
+
     private int score = 0;
     boolean EndGame = false;
     private int question = 0;
