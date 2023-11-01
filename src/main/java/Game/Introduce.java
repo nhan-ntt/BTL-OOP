@@ -15,9 +15,8 @@ import java.io.IOException;
 import static commandLine.DictionaryManagement.insertFromFileDICT;
 
 public class Introduce extends Application {
-    private static final int WIDTH = 1280;
-    private static final int HEIGHT = 800;
-    private boolean isSoundEnabled = true;
+    private static final int WIDTH = 1000;
+    private static final int HEIGHT = 600;
     Media sound = new Media(getClass().getResource("/fxml/Sound/Duck.mp3").toString());
 
     Button StartButton = new Button("Start");
@@ -40,7 +39,7 @@ public class Introduce extends Application {
         scene.getStylesheets().add(getClass().getResource("/fxml/CSS/introduce.css").toExternalForm());
 
         HBox startBox = new HBox();
-        startBox.setPadding(new Insets(0, 0, 247, 1100));
+        startBox.setPadding(new Insets(0, 0, 187, 850));
         StartButton.getStyleClass().add("transparent-button");
         startBox.getChildren().add(StartButton);
         root.setBottom(startBox);

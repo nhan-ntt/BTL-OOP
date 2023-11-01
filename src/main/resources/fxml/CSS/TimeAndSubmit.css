@@ -7,7 +7,7 @@
     -fx-border-width: 3; /* Độ rộng của viền */
     -fx-border-radius: 35;
     -fx-font-family: 'Reporter #2';
-    -fx-font-size: 35;
+    -fx-font-size: 25;
     -fx-background-color: #314A06; /* Màu nền xanh lá */
     -fx-text-fill: #FFFFFF; /* Màu chữ trắng */
     -fx-background-radius: 35; /* Bo góc tròn */
@@ -15,7 +15,7 @@
 }
 .time {
     -fx-font-family: 'Reporter #2';
-    -fx-font-size: 45;
+    -fx-font-size: 35;
     -fx-text-fill: white; /* Màu chữ */
     -fx-padding: 5 28; /* Khoảng cách giữa văn bản và biên của nút */
 }

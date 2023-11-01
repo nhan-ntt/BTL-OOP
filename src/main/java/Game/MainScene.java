@@ -35,12 +35,9 @@ public class MainScene extends Application {
         timeController.startTimer(uiManager);
 
         uiManager.initializeUI(stage);
-    }
-
-    @Override
-    public void stop() {
-
-        gameManager.soundManager.stopSoundEffect(); // Đây là một ví dụ, bạn cần triển khai phương thức stopMusic trong UIManager của bạn.
+        stage.setOnCloseRequest(event -> {
+            gameManager.soundManager.stopSoundEffect();
+        });
     }
 
     public static void main(String[] args) {
