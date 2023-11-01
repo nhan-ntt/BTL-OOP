@@ -3,7 +3,7 @@
     src: url('Reporter.otf');
 }
 .info-text {
-    -fx-font-size: 25px; /* Kích thước chữ */
+    -fx-font-size: 20px; /* Kích thước chữ */
     -fx-padding: 10; /* Khoảng cách giữa các ký tự */
     -fx-text-fill: white; /* Màu chữ trắng */
     -fx-font-weight: bold; /* Đậm */
@@ -13,6 +13,6 @@
     -fx-border-width: 1; /* Độ rộng viền */
 }
 .sound {
-    -fx-font-size: 55px;
+    -fx-font-size: 45px;
     -fx-background-color: transparent;
 }

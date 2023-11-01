@@ -19,8 +19,8 @@ import static javafx.scene.paint.Color.TRANSPARENT;
 import static javafx.scene.paint.Color.WHITE;
 
 public class UIManager {
-    public static final int WIDTH = 1280;
-    public static final int HEIGHT = 800;
+    public static final int WIDTH = 1000;
+    public static final int HEIGHT = 600;
     private Stage stage = new Stage();
     private GameManager gameManager = new GameManager();
     TimeController timeController = new TimeController("1:00",60);
@@ -43,29 +43,31 @@ public class UIManager {
 
         // Tạo ImageView cho hình ảnh overlay
         ImageView GameOverImage = new ImageView(new Image(getClass().getResourceAsStream("/fxml/Image/GameOver.png")));
-        GameOverImage.setFitWidth(WIDTH / 1.75);
+        GameOverImage.setFitWidth(WIDTH / 1.85);
         GameOverImage.setFitHeight(HEIGHT / 1.5);
 
         // Tạo một văn bản
         Text gameOverText = new Text("Congratulations!");
         gameOverText.getStyleClass().add("GameOver");
         gameOverText.getStyleClass().add("Congratulations"); // Đặt lớp CSS cho văn bản nếu cần
-        gameOverText.setTranslateX(-40);
+      //  gameOverText.setTranslateX(-130);
+      //  gameOverText.setTranslateY(-100);
 
         VBox GameOverBox = new VBox();
         GameOverBox.setSpacing(20);
 
         Text FinalScore = new Text("Score: " + gameManager.getScore() + " points");
         FinalScore.getStyleClass().add("GameOver");
-       // updateTime(totalTime, elapsedTime);
+        FinalScore.setTranslateX(40);
+
 
         timeController.getTotalTime().getStyleClass().add("time");
         timeController.getTotalTime().setFill(WHITE);
-        timeController.getTotalTime().setTranslateX(40);
+        timeController.getTotalTime().setTranslateX(70);
         timeController.getTotalTime().setTranslateY(10);
         GameOverBox.getChildren().addAll(gameOverText, FinalScore, timeController.getTotalTime());
 
-        GameOverBox.setPadding(new Insets(250, 0, 0, 550));
+        GameOverBox.setPadding(new Insets(160, 0, -450, 390));
 
         // Thêm hình ảnh và văn bản vào StackPane
         stackPane.getChildren().addAll(GameOverImage, GameOverBox);
@@ -80,7 +82,7 @@ public class UIManager {
         if (gameManager.soundManager.isSoundEnabled()) sound.setTextFill(TRANSPARENT); else sound.setTextFill(WHITE);
         sound.getStyleClass().add("sound");
 
-        sound.setTranslateX(837);
+        sound.setTranslateX(WIDTH-380);
         sound.setTranslateY(-30);
 
         VBox mainInfoBox = new VBox();
@@ -97,8 +99,8 @@ public class UIManager {
         mainInfoBox.getChildren().addAll(Score,Question,WrongAnswer);
 
         ImageView scoreImage = new ImageView(new Image(getClass().getResourceAsStream("/fxml/Image/avatar.jpg")));
-        scoreImage.setFitWidth(100);
-        scoreImage.setFitHeight(100);
+        scoreImage.setFitWidth(80);
+        scoreImage.setFitHeight(80);
 
         infoBox.getChildren().addAll(scoreImage, mainInfoBox,sound);
         infoBox.setSpacing(10);
@@ -122,8 +124,8 @@ public class UIManager {
         submitBox.getChildren().add(SubmitButton);
 
         HBox bottomBox = new HBox();
-        bottomBox.setPadding(new Insets(0, 40, 20, 0));
-        bottomBox.setSpacing(890);
+        bottomBox.setPadding(new Insets(0, 23, 12, 0));
+        bottomBox.setSpacing(690);
         bottomBox.setAlignment(Pos.BOTTOM_RIGHT);
         bottomBox.getChildren().addAll(countdownBox, submitBox);
         root.setBottom(bottomBox);

@@ -64,13 +64,13 @@ public class TextAnimation {
             button.setOnAction(event -> {
                 if (!buttonClicked[index]) {
                     if (numberDown == 0) {
-                        Animation(word.length(), index, button, "-fx-text-fill: white", 365, -70, 290);
+                        Animation(word.length(), index, button, "-fx-text-fill: white", 265, -60, 290);
                         letterDown=index;
                         numberDown++;
                     }
                     else {
 
-                        Animation(word.length(), index, button, "-fx-text-fill: white", 365, -70, 290);
+                        Animation(word.length(), index, button, "-fx-text-fill: white", 265, -60, 290);
                         buttonClicked[index] = true;
                         Button letterDownButton = buttonList.get(letterDown);
                         Animation(word.length(), letterDown, letterDownButton, "-fx-text-fill:#eb4d7d", 0, 0, 0);
