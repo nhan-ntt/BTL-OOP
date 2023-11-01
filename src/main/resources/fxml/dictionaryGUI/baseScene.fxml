@@ -3,15 +3,15 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="677.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dictionaryGUI.baseSceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dictionaryGUI.baseSceneController">
    <children>
-      <AnchorPane fx:id="container" layoutX="8.0" layoutY="7.0" prefHeight="358.0" prefWidth="661.0" style="-fx-background-color: white;" />
-      <Button fx:id="searchBtn" layoutX="98.0" layoutY="382.0" mnemonicParsing="false" text="search" />
-      <Button fx:id="favBtn" layoutX="171.0" layoutY="382.0" mnemonicParsing="false" text="fav" />
-      <Button fx:id="transBtn" layoutX="381.0" layoutY="382.0" mnemonicParsing="false" text="translate" />
-      <Button fx:id="gameBtn" layoutX="466.0" layoutY="382.0" mnemonicParsing="false" text="game" />
-      <Button fx:id="exitBtn" layoutX="530.0" layoutY="382.0" mnemonicParsing="false" text="exit" />
-      <Button fx:id="homeBtn" layoutX="315.0" layoutY="382.0" mnemonicParsing="false" text="home" />
-      <Button fx:id="addBtn" layoutX="227.0" layoutY="382.0" mnemonicParsing="false" text="add" />
+      <AnchorPane fx:id="container" layoutX="8.0" layoutY="8.0" prefHeight="532.0" prefWidth="984.0" style="-fx-background-color: white;" />
+      <Button fx:id="searchBtn" layoutX="155.0" layoutY="561.0" mnemonicParsing="false" text="search" />
+      <Button fx:id="favBtn" layoutX="260.0" layoutY="561.0" mnemonicParsing="false" text="fav" />
+      <Button fx:id="transBtn" layoutX="585.0" layoutY="561.0" mnemonicParsing="false" text="translate" />
+      <Button fx:id="gameBtn" layoutX="704.0" layoutY="561.0" mnemonicParsing="false" text="game" />
+      <Button fx:id="exitBtn" layoutX="937.0" layoutY="561.0" mnemonicParsing="false" text="exit" />
+      <Button fx:id="homeBtn" layoutX="477.0" layoutY="561.0" mnemonicParsing="false" text="home" />
+      <Button fx:id="addBtn" layoutX="364.0" layoutY="561.0" mnemonicParsing="false" text="add" />
    </children>
 </AnchorPane>

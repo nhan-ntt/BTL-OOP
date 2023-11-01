@@ -31,6 +31,14 @@ public class addController implements Initializable {
         ok.setVisible(false);
         existed.setVisible(false);
 
+        wordTarget.setOnMouseClicked(e -> {
+            wordTarget.setText("");
+            wordExplain.setText("");
+            addBtn.setDisable(true);
+            ok.setVisible(false);
+            existed.setVisible(false);
+        });
+
         wordTarget.setOnKeyReleased(e -> {
             String wordTarget = this.wordTarget.getText();
             if (listWord.contains(wordTarget)) {
@@ -56,7 +64,7 @@ public class addController implements Initializable {
 
             FileWriter fw = null;
             try {
-                fw = new FileWriter("src\\main\\resources\\addWord.txt");
+                fw = new FileWriter("src\\main\\resources\\addWord.txt", true);
                 fw.write("@" + wordTarget.getText() + "\n");
                 fw.write(wordExplain.getText());
                 fw.write("\n\n");

@@ -27,7 +27,7 @@ public class GameManager {
             if (i != textAnimation.getLetterDown()) finalWord += word.charAt(i);
         System.out.println(finalWord+" "+textAnimation.getNumberDown());
         Word wordSearch = lookupWord(finalWord);
-        if (wordSearch != null) {
+        if (!wordSearch.getWordExplain().equals("This word is not already existed")) {
             setScore(score+10);
             soundManager.playSoundEffect("/fxml/Sound/correct.mp3");
         }

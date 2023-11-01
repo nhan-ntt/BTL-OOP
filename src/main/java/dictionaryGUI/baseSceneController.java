@@ -1,6 +1,6 @@
 package dictionaryGUI;
 
-import Game_Leave_me_out.Introduce;
+import Game.Introduce;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

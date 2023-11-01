@@ -16,11 +16,12 @@ public class transController implements Initializable {
     @FXML
     TextArea input, output;
     @FXML
-    Button transBtn, switchBtn;
+    Button transBtn, switchBtn, speakFromBtn, speakToBtn;
     @FXML
     Label langFrom, langTo;
 
     String langFromStr, langToStr;
+
 
     void setLabelFromCode(Label lb, String lang) {
         if (lang.equals("vi")) {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -7,21 +8,31 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="358.0" prefWidth="661.0" style="-fx-background-color: FFF6F6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dictionaryGUI.transController">
+<AnchorPane prefHeight="532.0" prefWidth="984.0" style="-fx-background-color: FFF6F6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dictionaryGUI.transController">
    <children>
-      <Button fx:id="transBtn" layoutX="285.0" layoutY="304.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="96.0" text="translate">
+      <Button fx:id="transBtn" layoutX="444.0" layoutY="479.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="96.0" text="translate">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <TextArea fx:id="input" layoutX="106.0" layoutY="117.0" prefHeight="170.0" prefWidth="227.0" />
-      <TextArea fx:id="output" layoutX="333.0" layoutY="117.0" prefHeight="170.0" prefWidth="227.0" />
-      <Pane layoutX="106.0" layoutY="69.0" prefHeight="48.0" prefWidth="455.0" style="-fx-background-color: C3ACD0;">
+      <TextArea fx:id="input" layoutX="29.0" layoutY="197.0" prefHeight="266.0" prefWidth="459.0" />
+      <TextArea fx:id="output" layoutX="496.0" layoutY="197.0" prefHeight="266.0" prefWidth="459.0" />
+      <Pane layoutX="30.0" layoutY="118.0" prefHeight="70.0" prefWidth="925.0" style="-fx-background-color: C3ACD0;">
          <children>
-            <Button fx:id="switchBtn" layoutX="202.0" layoutY="12.0" mnemonicParsing="false" text="switch" />
-            <Label fx:id="langFrom" layoutX="83.0" layoutY="16.0" text="English" />
-            <Label fx:id="langTo" layoutX="317.0" layoutY="16.0" text="Vietnamese" />
+            <Button fx:id="switchBtn" layoutX="428.0" layoutY="19.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="switch" />
+            <Label fx:id="langFrom" layoutX="160.0" layoutY="22.0" prefHeight="25.0" prefWidth="96.0" text="English" />
+            <Label fx:id="langTo" layoutX="679.0" layoutY="26.0" text="Vietnamese" />
          </children>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
       </Pane>
+      <Button fx:id="speakFromBtn" layoutX="50.0" layoutY="432.0" mnemonicParsing="false" text="speakFrom" />
+      <Button fx:id="speakToBtn" layoutX="879.0" layoutY="432.0" mnemonicParsing="false" text="speakTo" />
+      <Label layoutX="30.0" layoutY="37.0" prefHeight="70.0" prefWidth="245.0" text="translate" textFill="#9a3e72">
+         <font>
+            <Font name="Baloo 2 ExtraBold" size="30.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
