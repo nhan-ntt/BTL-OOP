@@ -11,12 +11,18 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import static API.VoiceRSSAPI.generateTextToSpeech;
 import static commandLine.Dictionary.*;
 import static commandLine.DictionaryManagement.*;
 
@@ -26,7 +32,7 @@ public class favController implements Initializable {
     @FXML
     private TextArea wordExplain;
     @FXML
-    private Button star;
+    private Button star, volumeBtn;
     @FXML
     private Label wordTarget;
 
@@ -51,6 +57,7 @@ public class favController implements Initializable {
             wordTarget.setText(word.getWordTarget());
             wordExplain.setText(word.getWordExplain());
         });
+
     }
 
     public void handleStar(MouseEvent mouseEvent) throws IOException {
@@ -90,5 +97,19 @@ public class favController implements Initializable {
         }
 
         exportCustomDictionary();
+    }
+
+    public void handleSpeak(MouseEvent mouseEvent) {
+        generateTextToSpeech(wordTarget.getText(), "English");
+
+        String gongFile = "output.mp3";
+        InputStream in = null;
+        try {
+            in = Files.newInputStream(Paths.get(gongFile));
+            AudioStream audioStream = new AudioStream(in);
+            AudioPlayer.player.start(audioStream);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }

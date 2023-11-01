@@ -18,10 +18,11 @@
       <Pane layoutX="30.0" layoutY="118.0" prefHeight="70.0" prefWidth="675.0" style="-fx-background-color: C3ACD0;">
          <children>
             <Button fx:id="star" layoutX="563.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#handleStar" text="fav-star" />
-            <Label fx:id="wordTarget" layoutX="22.0" layoutY="14.0" prefHeight="37.0" prefWidth="373.0" text="dit me em">
+            <Label fx:id="wordTarget" layoutX="22.0" layoutY="14.0" prefHeight="37.0" prefWidth="373.0">
                <font>
                   <Font name="Dosis ExtraBold" size="31.0" />
                </font></Label>
+            <Button fx:id="volumeBtn" layoutX="478.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#handleSpeak" text="phat am" />
          </children>
       </Pane>
       <TextArea fx:id="wordExplain" layoutX="29.0" layoutY="197.0" prefHeight="310.0" prefWidth="675.0" />

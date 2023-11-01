@@ -11,14 +11,21 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 import javax.swing.text.html.ImageView;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import static API.VoiceRSSAPI.generateTextToSpeech;
 import static commandLine.Dictionary.favoriteWord;
 import static commandLine.Dictionary.listWord;
 import static commandLine.DictionaryCommandLine.showAllWords;
@@ -74,6 +81,7 @@ public class searchController implements Initializable {
         wordExplain.setEditable(false);
         saveBtn.setVisible(false);
         notAvailable.setVisible(false);
+
     }
 
     private void handleOnKeyTyped() {
@@ -155,9 +163,13 @@ public class searchController implements Initializable {
         listWord.changeMeaning(wordTarget.getText(), wordExplain.getText());
     }
 
-    public void handleSpeak(MouseEvent mouseEvent) {
+    public void handleSpeak(MouseEvent mouseEvent) throws Exception {
+        generateTextToSpeech(wordTarget.getText(), "English");
 
-
+        String gongFile = "output.mp3";
+        InputStream in = Files.newInputStream(Paths.get(gongFile));
+        AudioStream audioStream = new AudioStream(in);
+        AudioPlayer.player.start(audioStream);
     }
 
     public void handleDelete(MouseEvent mouseEvent) {

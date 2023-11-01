@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Objects;
 
 public class VoiceRSSAPI {
 
@@ -19,7 +20,7 @@ public class VoiceRSSAPI {
         }
     }
 
-    private static String generateTextToSpeech(String text, String language) {
+    public static String generateTextToSpeech(String text, String language) {
         try {
             String apiKey = "b71ac35ba2a140d29a88ade10512d5e9";
             String apiUrl = "https://api.voicerss.org/";
@@ -28,7 +29,7 @@ public class VoiceRSSAPI {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             setConnectionProperties(connection);
             String data = "key=" + apiKey + "&src=" + text  ;
-            if(language == "Vietnamese")  data = data + "&hl=vi-VN";
+            if(Objects.equals(language, "Vietnamese"))  data = data + "&hl=vi-VN";
             sendDataToApi(connection, data);
 
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
