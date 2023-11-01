@@ -1,14 +1,12 @@
-package Game_Leave_me_out;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+package Game;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
@@ -20,7 +18,7 @@ public class Introduce extends Application {
     private static final int WIDTH = 1280;
     private static final int HEIGHT = 800;
     private boolean isSoundEnabled = true;
-    Media sound = new Media(getClass().getResource("/fxml/Duck.mp3").toString());
+    Media sound = new Media(getClass().getResource("/fxml/Sound/Duck.mp3").toString());
 
     Button StartButton = new Button("Start");
     MediaPlayer mediaPlayer = new MediaPlayer(sound);
@@ -36,15 +34,13 @@ public class Introduce extends Application {
     }
     @Override
     public void start(Stage stage) throws IOException {
-        insertFromFileDICT();
-
         Music();
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, WIDTH,HEIGHT);
-        scene.getStylesheets().add(getClass().getResource("/fxml/Introduce.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/fxml/CSS/introduce.css").toExternalForm());
 
         HBox startBox = new HBox();
-        startBox.setPadding(new Insets(0, 0, 150, 1100));
+        startBox.setPadding(new Insets(0, 0, 247, 1100));
         StartButton.getStyleClass().add("transparent-button");
         startBox.getChildren().add(StartButton);
         root.setBottom(startBox);

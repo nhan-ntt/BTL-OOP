@@ -1,13 +1,13 @@
-package Game_Leave_me_out;
+package Game;
 
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
-public class TextController {
-    private Button ButtonLetter;
+public class BorderButton {
 
-    public TextController(Button buttonLetter) {
+    private Button ButtonLetter;
+    public BorderButton(Button buttonLetter) {
         this.ButtonLetter = buttonLetter;
         initializeButton();
     }
