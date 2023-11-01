@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
+import javax.swing.text.html.ImageView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -35,6 +36,7 @@ public class searchController implements Initializable {
     @FXML
     private TextArea wordExplain;
 
+
     private final int NUM_OF_WORDS = 20;
     ObservableList<String> list = FXCollections.observableArrayList();
 
@@ -55,19 +57,19 @@ public class searchController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        insertFromFileDICT();
         setListDefault();
-
-        searchTerm.setOnKeyTyped(e -> {
-            System.out.println(searchTerm.getText());
+        try {
+            importCustomDictionary();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        searchTerm.setOnKeyReleased(e -> {
             if (searchTerm.getText().isEmpty()) {
                 setListDefault();
             } else {
                 handleOnKeyTyped();
             }
         });
-
 
         wordExplain.setEditable(false);
         saveBtn.setVisible(false);
@@ -103,11 +105,15 @@ public class searchController implements Initializable {
     public void handleMouseClickAWord(MouseEvent mouseEvent) throws IOException {
         String selectedWord = recList.getSelectionModel().getSelectedItem();
         Word word = lookupWord(selectedWord);
+//        System.out.println(word.getWordTarget() + " " + word.isFavorite());
+
         wordTarget.setText(word.getWordTarget());
         wordExplain.setText(word.getWordExplain());
         wordExplain.setVisible(true);
         wordExplain.setEditable(false);
         saveBtn.setVisible(false);
+
+        recentWord.removeIf((Word w) -> w.getWordTarget().equals(wordTarget));
         recentWord.addFirst(word);
         exportCustomDictionary();
     }
@@ -115,7 +121,31 @@ public class searchController implements Initializable {
     public void handleFavorite(MouseEvent mouseEvent) throws IOException {
         if (wordTarget.getText().isEmpty()) return;
         String wordTarget = this.wordTarget.getText();
-        favoriteWord.addFirst(new Word(wordTarget, Objects.requireNonNull(lookupWord(wordTarget)).getWordExplain()));
+
+        Word favWord = null;
+
+        for (Word word : favoriteWord) {
+            if (word.getWordTarget().equals(wordTarget)) {
+                favWord = word;
+                break;
+            }
+        }
+
+        if (favWord == null)
+            favWord = new Word(wordTarget, Objects.requireNonNull(lookupWord(wordTarget)).getWordExplain());
+
+        System.out.println("before " + favWord.getWordTarget() + " " + favWord.isFavorite());
+
+        if (!favWord.isFavorite()) {
+            favoriteWord.removeIf((Word w) -> w.getWordTarget().equals(wordTarget));
+            favoriteWord.addFirst(favWord);
+            favWord.setFavorite(true);
+        } else {
+            favoriteWord.removeIf((Word w) -> w.getWordTarget().equals(wordTarget));
+            favWord.setFavorite(false);
+        }
+        System.out.println("after " + favWord.getWordTarget() + " " + favWord.isFavorite());
+
         exportCustomDictionary();
     }
 
@@ -142,7 +172,7 @@ public class searchController implements Initializable {
         }
 
         recList.setItems(list);
-        wordExplain.setVisible(false);
+        wordExplain.setText("");
         wordTarget.setText("");
     }
 

@@ -11,12 +11,12 @@
 <AnchorPane prefHeight="358.0" prefWidth="661.0" style="-fx-background-color: yellow;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dictionaryGUI.favController">
    <children>
       <Label layoutX="197.0" layoutY="14.0" prefHeight="33.0" prefWidth="240.0" text="Favorite words" />
-      <ListView fx:id="listFav" layoutX="40.0" layoutY="61.0" prefHeight="283.0" prefWidth="200.0" />
+      <ListView fx:id="favList" layoutX="40.0" layoutY="61.0" prefHeight="283.0" prefWidth="200.0" />
       <Pane layoutX="259.0" layoutY="61.0" prefHeight="283.0" prefWidth="322.0" style="-fx-background-color: red;">
          <children>
-            <TextArea fx:id="explain" layoutX="11.0" layoutY="65.0" prefHeight="204.0" prefWidth="300.0" style="-fx-background-color: blue;" />
-            <Button fx:id="star" layoutX="252.0" layoutY="14.0" mnemonicParsing="false" text="fav-star" />
-            <Label fx:id="word" layoutX="22.0" layoutY="18.0" prefHeight="33.0" prefWidth="84.0" style="-fx-background-color: white;" text="word" />
+            <TextArea fx:id="wordExplain" layoutX="11.0" layoutY="65.0" prefHeight="204.0" prefWidth="300.0" style="-fx-background-color: blue;" />
+            <Button fx:id="star" layoutX="252.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#handleStar" text="fav-star" />
+            <Label fx:id="wordTarget" layoutX="22.0" layoutY="18.0" prefHeight="33.0" prefWidth="84.0" style="-fx-background-color: white;" text="word" />
             <StackPane layoutX="61.0" layoutY="101.0" prefHeight="150.0" prefWidth="200.0" />
          </children>
       </Pane>

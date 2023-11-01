@@ -9,13 +9,20 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.IOException;
+
+import static commandLine.DictionaryManagement.importCustomDictionary;
+import static commandLine.DictionaryManagement.insertFromFileDICT;
+
 
 public class DictionaryApp extends Application {
 
     private double xOffset = 0;
     private double yOffset = 0;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        importCustomDictionary();
+        insertFromFileDICT();
         launch(args);
     }
 

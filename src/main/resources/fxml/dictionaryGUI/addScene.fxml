@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="358.0" prefWidth="661.0" style="-fx-background-color: FFF6F6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="358.0" prefWidth="661.0" style="-fx-background-color: FFF6F6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dictionaryGUI.addController">
    <children>
       <TextField fx:id="wordTarget" layoutX="106.0" layoutY="55.0" prefHeight="32.0" prefWidth="302.0" promptText="type word..." />
       <Label layoutX="106.0" layoutY="14.0" text="Word">
@@ -16,7 +16,7 @@
          </font>
       </Label>
       <Label layoutX="106.0" layoutY="95.0" text="Meaning" />
-      <Label fx:id="okLable" layoutX="233.0" layoutY="303.0" text="added successfully">
+      <Label fx:id="ok" layoutX="234.0" layoutY="303.0" text="added successfully">
          <font>
             <Font size="19.0" />
          </font>
@@ -27,5 +27,6 @@
          </font>
       </Button>
       <TextArea fx:id="wordExplain" layoutX="106.0" layoutY="117.0" prefHeight="170.0" prefWidth="302.0" promptText="type meaning..." />
+      <Label fx:id="existed" layoutX="426.0" layoutY="63.0" text="this word is already existed" />
    </children>
 </AnchorPane>

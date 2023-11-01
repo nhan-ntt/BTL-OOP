@@ -102,6 +102,7 @@ public class DictionaryManagement extends Dictionary{
      */
     public static void importCustomDictionary() throws IOException
     {
+        favoriteWord.clear();
         // Read favoriteWord.txt
         File text = new File("src\\main\\resources\\favoriteWord.txt");
         Scanner sc = new Scanner(text);
@@ -111,11 +112,15 @@ public class DictionaryManagement extends Dictionary{
                 break;
             }
             Word favWord = lookupWord(target);
-            favoriteWord.addFirst(favWord);
+            if (!favWord.getWordExplain().equals("This word is not already existed")) {
+                favoriteWord.addLast(favWord);
+            }
 
+            assert favWord != null;
             favWord.setFavorite(true);
         }
 
+        recentWord.clear();
         // Read recentWord.txt
         text = new File("src\\main\\resources\\recentWord.txt");
         sc = new Scanner(text);
@@ -124,7 +129,35 @@ public class DictionaryManagement extends Dictionary{
             if(target.isEmpty()) {
                 break;
             }
-            recentWord.addFirst(lookupWord(target));
+            recentWord.addLast(lookupWord(target));
+        }
+
+        // Read addWord.txt and insert to trie
+        try {
+            String content = readFile("src\\main\\resources\\addWord.txt", Charset.defaultCharset());
+            String[] words = content.split("@");
+            for (String word : words) {
+                String[] result = word.split("\r?\n", 2);
+                if (result.length > 1) {
+                    String wordExplain1 = new String();
+                    String wordTarget1 = new String();
+                    String wordSound1 = new String();
+                    if (result[0].contains("/")) {
+                        String firstMeaning = result[0].substring(0, result[0].indexOf("/"));
+                        String lastSoundMeaning = result[0].substring(result[0].indexOf("/"), result[0].length());
+                        wordTarget1 = firstMeaning;
+                        wordSound1 = lastSoundMeaning;
+                    } else {
+                        wordTarget1 = result[0];
+                        wordSound1 = "";
+                    }
+                    wordExplain1 = result[1];
+                    listWord.insert(wordTarget1.trim(), wordExplain1.trim());
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -157,7 +190,7 @@ public class DictionaryManagement extends Dictionary{
 
     public static Word lookupWord(String word) {
         if (!listWord.contains(word)) {
-            return null;
+            return new Word(word, "This word is not already existed");
         }
         return new Word(word, listWord.getMeaning(word));
     }
@@ -167,9 +200,13 @@ public class DictionaryManagement extends Dictionary{
         System.out.println(listWord.getAllWords().get(0));
     }
 
-    public static String addWord(String wordTarget, String wordExplain) {
+    public static String addWordMessage(String wordTarget, String wordExplain) {
         listWord.insert(wordTarget, wordExplain);
         return "Add word successfully!";
+    }
+
+    public static void addWord(String wordTarget, String wordExplain) {
+        listWord.insert(wordTarget, wordExplain);
     }
 
     public static String removeWord(String wordTarget) {

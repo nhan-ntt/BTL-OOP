@@ -88,7 +88,7 @@ public class DictionaryCommandLine extends DictionaryManagement{
 //                    w1 = sc.nextLine();
                     System.out.println("Write the meaning of word: ");
                     wordExplain = sc.nextLine();
-                    System.out.println(addWord(wordTarget, wordExplain));
+                    System.out.println(addWordMessage(wordTarget, wordExplain));
                     break;
                 case "R" :
                     System.out.println("Write a word: ");

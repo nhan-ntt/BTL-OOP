@@ -7,20 +7,20 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="358.0" prefWidth="661.0" style="-fx-background-color: FFF6F6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="358.0" prefWidth="661.0" style="-fx-background-color: FFF6F6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dictionaryGUI.transController">
    <children>
-      <Button layoutX="285.0" layoutY="304.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="96.0" text="translate">
+      <Button fx:id="transBtn" layoutX="285.0" layoutY="304.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="96.0" text="translate">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <TextArea layoutX="106.0" layoutY="117.0" prefHeight="170.0" prefWidth="227.0" />
-      <TextArea layoutX="333.0" layoutY="117.0" prefHeight="170.0" prefWidth="227.0" />
+      <TextArea fx:id="input" layoutX="106.0" layoutY="117.0" prefHeight="170.0" prefWidth="227.0" />
+      <TextArea fx:id="output" layoutX="333.0" layoutY="117.0" prefHeight="170.0" prefWidth="227.0" />
       <Pane layoutX="106.0" layoutY="69.0" prefHeight="48.0" prefWidth="455.0" style="-fx-background-color: C3ACD0;">
          <children>
             <Button fx:id="switchBtn" layoutX="202.0" layoutY="12.0" mnemonicParsing="false" text="switch" />
-            <Label layoutX="83.0" layoutY="16.0" text="English" />
-            <Label layoutX="317.0" layoutY="16.0" text="Vietnamese" />
+            <Label fx:id="langFrom" layoutX="83.0" layoutY="16.0" text="English" />
+            <Label fx:id="langTo" layoutX="317.0" layoutY="16.0" text="Vietnamese" />
          </children>
       </Pane>
    </children>

@@ -336,7 +336,7 @@ public class MainScene extends Application {
         for (int i = 0; i < word.length(); i++)
             if (i != letterDown) finalWord += word.charAt(i);
         Word wordSearch = lookupWord(finalWord);
-        if (wordSearch != null) {
+        if (!wordSearch.getWordExplain().equals("This word is not already existed")) {
             score += 10;
             SoundCorect();
         }

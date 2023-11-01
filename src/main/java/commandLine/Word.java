@@ -21,6 +21,7 @@ public class Word {
     public Word(String wordTarget, String wordExplain) {
         this.wordTarget = wordTarget;
         this.wordExplain = wordExplain;
+        this.isFavorite = false;
     }
 
     public String getWordTarget() {
