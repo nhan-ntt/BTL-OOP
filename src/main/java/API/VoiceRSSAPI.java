@@ -9,7 +9,8 @@ import java.nio.file.StandardCopyOption;
 public class VoiceRSSAPI {
     public static void main(String[] args) {
         String apiKey = "b71ac35ba2a140d29a88ade10512d5e9";
-        String textToSpeech = "Congratulations, your account has been activated successfully!";
+       // String textToSpeech = "Congratulations, your account has been activated successfully!";
+        String textToSpeech = "Ngọc Ánh";
 
         try {
             String apiUrl = "https://api.voicerss.org/";
@@ -20,7 +21,9 @@ public class VoiceRSSAPI {
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             connection.setDoOutput(true);
 
-            String data = "key=" + apiKey + "&src=" + textToSpeech;
+           // String data = "key=" + apiKey + "&src=" + textToSpeech;
+
+            String data = "key=" + apiKey + "&src=" + textToSpeech + "&hl=vi-VN";
             OutputStream os = connection.getOutputStream();
             os.write(data.getBytes());
 
