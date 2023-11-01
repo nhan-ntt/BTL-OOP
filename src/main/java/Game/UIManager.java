@@ -13,8 +13,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
-
 import static javafx.scene.paint.Color.TRANSPARENT;
 import static javafx.scene.paint.Color.WHITE;
 
@@ -42,7 +40,7 @@ public class UIManager {
         StackPane stackPane = new StackPane();
 
         // Tạo ImageView cho hình ảnh overlay
-        ImageView GameOverImage = new ImageView(new Image(getClass().getResourceAsStream("/fxml/Image/GameOver.png")));
+        ImageView GameOverImage = new ImageView(new Image(getClass().getResourceAsStream("/Image/GameOver.png")));
         GameOverImage.setFitWidth(WIDTH / 1.85);
         GameOverImage.setFitHeight(HEIGHT / 1.5);
 
@@ -98,7 +96,7 @@ public class UIManager {
 
         mainInfoBox.getChildren().addAll(Score,Question,WrongAnswer);
 
-        ImageView scoreImage = new ImageView(new Image(getClass().getResourceAsStream("/fxml/Image/avatar.jpg")));
+        ImageView scoreImage = new ImageView(new Image(getClass().getResourceAsStream("/Image/avatar.jpg")));
         scoreImage.setFitWidth(80);
         scoreImage.setFitHeight(80);
 
@@ -156,10 +154,10 @@ public class UIManager {
             BorderPane root = new BorderPane();
             Scene scene = new Scene(root, WIDTH, HEIGHT);
 
-            scene.getStylesheets().add(getClass().getResource("/fxml/CSS/decorate.css").toExternalForm());
-            scene.getStylesheets().add(getClass().getResource("/fxml/CSS/TimeAndSubmit.css").toExternalForm());
-            scene.getStylesheets().add(getClass().getResource("/fxml/CSS/Inform.css").toExternalForm());
-            scene.getStylesheets().add(getClass().getResource("/fxml/CSS/GameOver.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/fxml/Game/decorate.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/fxml/Game/TimeAndSubmit.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/fxml/Game/Inform.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/fxml/Game/GameOver.css").toExternalForm());
             stage.setScene(scene);
 
             LetterFunc(root);

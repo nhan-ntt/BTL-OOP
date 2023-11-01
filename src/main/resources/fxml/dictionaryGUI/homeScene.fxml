@@ -10,7 +10,7 @@
    <children>
       <ImageView fitHeight="512.0" fitWidth="940.0" layoutX="37.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Image/ddangddangg.png" />
+            <Image url="@../../Image/ddangddangg.png" />
          </image>
       </ImageView>
       <Label layoutX="31.0" layoutY="25.0" text="học bài đi chi bai lo ma" textFill="#450a0a">

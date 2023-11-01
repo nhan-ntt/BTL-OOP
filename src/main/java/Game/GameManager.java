@@ -11,7 +11,7 @@ public class GameManager {
     private int question = 0;
     private int wrongAnswer = 0;
     private int numberQuestion = 10;
-    public SoundManager soundManager = new SoundManager("/fxml/Sound/cute.mp3");
+    public SoundManager soundManager = new SoundManager("/Sound/cute.mp3");
     TextAnimation textAnimation =new TextAnimation();
 
 
@@ -29,11 +29,11 @@ public class GameManager {
         Word wordSearch = lookupWord(finalWord);
         if (!wordSearch.getWordExplain().equals("This word is not already existed")) {
             setScore(score+10);
-            soundManager.playSoundEffect("/fxml/Sound/correct.mp3");
+            soundManager.playSoundEffect("/Sound/correct.mp3");
         }
         else {
             setWrongAnswer(++wrongAnswer);
-            soundManager.playSoundEffect("/fxml/Sound/DuckWrong.wav");
+            soundManager.playSoundEffect("/Sound/DuckWrong.wav");
         }
         setQuestion(++question);
 

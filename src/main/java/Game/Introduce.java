@@ -17,7 +17,7 @@ import static commandLine.DictionaryManagement.insertFromFileDICT;
 public class Introduce extends Application {
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 600;
-    Media sound = new Media(getClass().getResource("/fxml/Sound/Duck.mp3").toString());
+    Media sound = new Media(getClass().getResource("/Sound/Duck.mp3").toString());
 
     Button StartButton = new Button("Start");
     MediaPlayer mediaPlayer = new MediaPlayer(sound);
@@ -36,7 +36,7 @@ public class Introduce extends Application {
         Music();
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, WIDTH,HEIGHT);
-        scene.getStylesheets().add(getClass().getResource("/fxml/CSS/introduce.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/fxml/Game/introduce.css").toExternalForm());
 
         HBox startBox = new HBox();
         startBox.setPadding(new Insets(0, 0, 187, 850));
