@@ -37,6 +37,12 @@ public class MainScene extends Application {
         uiManager.initializeUI(stage);
     }
 
+    @Override
+    public void stop() {
+
+        gameManager.soundManager.stopSoundEffect(); // Đây là một ví dụ, bạn cần triển khai phương thức stopMusic trong UIManager của bạn.
+    }
+
     public static void main(String[] args) {
         insertFromFileDICT();
         launch(args);
