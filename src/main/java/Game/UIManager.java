@@ -146,6 +146,7 @@ public class UIManager {
     void EndTime() {
             gameManager.setEndGame(true);
             initializeUI(stage);
+            return;
     }
     public void initializeUI(Stage stage) {
         try {
@@ -164,7 +165,10 @@ public class UIManager {
             SubmitAndTime(root);
             InformationFunc(root, "info-text");
             if (gameManager.getQuestion() == gameManager.getNumberQuestion() || gameManager.isEndGame())
+            {
                 GameOver(root, "GameOver");
+                return;
+            }
             stage.show();
 
 

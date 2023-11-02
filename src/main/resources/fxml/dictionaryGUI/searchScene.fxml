@@ -9,10 +9,10 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="532.0" prefWidth="984.0" style="-fx-background-color: FFF6F6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dictionaryGUI.searchController">
+<AnchorPane prefHeight="532.0" prefWidth="984.0" styleClass="container" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dictionaryGUI.searchController">
    <children>
-      <TextField fx:id="searchTerm" layoutX="257.0" layoutY="33.0" prefHeight="55.0" prefWidth="471.0" promptText="nhập từ cần tìm kiếm..." style="-fx-border-color: purple; -fx-background-color: white;" />
-      <Pane layoutX="30.0" layoutY="118.0" prefHeight="70.0" prefWidth="675.0" style="-fx-background-color: FFDFDF;">
+      <TextField fx:id="searchTerm" layoutX="257.0" layoutY="33.0" prefHeight="55.0" prefWidth="471.0" promptText="nhập từ cần tìm kiếm..." styleClass="english-word-input" />
+      <Pane layoutX="30.0" layoutY="118.0" prefHeight="70.0" prefWidth="675.0" styleClass="word-bar" stylesheets="@style.css">
          <children>
             <Button fx:id="editBtn" layoutX="564.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#handleEdit" text="edit" />
             <Button fx:id="deleteBtn" layoutX="612.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#handleDelete" text="delete" />
@@ -25,7 +25,7 @@
             </Label>
          </children>
       </Pane>
-      <ListView fx:id="recList" layoutX="713.0" layoutY="118.0" onMouseClicked="#handleMouseClickAWord" prefHeight="390.0" prefWidth="244.0" />
+      <ListView fx:id="recList" layoutX="713.0" layoutY="118.0" onMouseClicked="#handleMouseClickAWord" prefHeight="390.0" prefWidth="244.0" styleClass="list-cell" stylesheets="@style.css" />
       <TextArea fx:id="wordExplain" layoutX="29.0" layoutY="197.0" prefHeight="310.0" prefWidth="675.0" />
       <Label fx:id="notAvailable" layoutX="257.0" layoutY="88.0" prefHeight="25.0" prefWidth="97.0" text="not available" />
       <Button fx:id="saveBtn" layoutX="651.0" layoutY="207.0" mnemonicParsing="false" onMouseClicked="#handleSave" text="save" />

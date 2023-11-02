@@ -34,7 +34,7 @@ public class DictionaryApp extends Application {
 //        stage.initStyle(StageStyle.TRANSPARENT);
 
         Scene scene = new Scene(root);
-//        scene.setFill(Color.TRANSPARENT);
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
     }

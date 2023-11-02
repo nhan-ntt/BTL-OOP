@@ -20,7 +20,7 @@ public class Introduce extends Application {
     Media sound = new Media(getClass().getResource("/Sound/Duck.mp3").toString());
 
     Button StartButton = new Button("Start");
-    MediaPlayer mediaPlayer = new MediaPlayer(sound);
+    public MediaPlayer mediaPlayer = new MediaPlayer(sound);
 
     void Music() {
 

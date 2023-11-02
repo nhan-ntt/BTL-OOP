@@ -1,6 +1,7 @@
 package dictionaryGUI;
 
 import Game.Introduce;
+import Game.MainScene;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -23,6 +24,7 @@ import java.util.ResourceBundle;
 public class baseSceneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        showComponent("/fxml/dictionaryGUI/homeScene.fxml");
 
         searchBtn.setOnAction(e -> {
            showComponent("/fxml/dictionaryGUI/searchScene.fxml");
@@ -47,11 +49,17 @@ public class baseSceneController implements Initializable {
         gameBtn.setOnAction(e -> {
             Introduce introduce = new Introduce();
             try {
-                introduce.start(new Stage());
+                Stage newStage = new Stage();
+                introduce.start(newStage);
+                newStage.setOnCloseRequest(event -> {
+                    introduce.mediaPlayer.stop();
+                });
+//                introduce.mediaPlayer.stop();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         });
+
 
         exitBtn.setOnMouseClicked(e -> {
             System.exit(0);
