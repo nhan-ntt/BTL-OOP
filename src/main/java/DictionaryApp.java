@@ -31,7 +31,7 @@ public class DictionaryApp extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/dictionaryGUI/baseScene.fxml"));
 
         stage.setTitle("Dictionary Application");
-//        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.initStyle(StageStyle.TRANSPARENT);
 
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);

@@ -21,11 +21,6 @@
                </image>
             </ImageView>
          </graphic></Label>
-      <Label layoutX="415.0" layoutY="30.0" prefHeight="70.0" prefWidth="245.0" text="add word" textFill="#9a3e72">
-         <font>
-            <Font name="Baloo 2 ExtraBold" size="30.0" />
-         </font>
-      </Label>
       <Pane layoutX="30.0" layoutY="118.0" prefHeight="70.0" prefWidth="917.0" styleClass="word-bar" stylesheets="@style.css">
          <children>
             <TextField fx:id="wordTarget" layoutY="1.0" prefHeight="70.0" prefWidth="913.0" promptText="Type word" styleClass="word-target" />

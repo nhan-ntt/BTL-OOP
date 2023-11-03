@@ -82,8 +82,10 @@ public class favController implements Initializable {
             }
         }
 
-        assert favWord != null;
-        System.out.println(favWord + " " + favWord.isFavorite());
+//        assert favWord != null;
+//        System.out.println(favWord + " " + favWord.isFavorite());
+
+        if (favWord == null) return;
 
         if (!favWord.isFavorite()) {
             favoriteWord.removeIf((Word w) -> w.getWordTarget().equals(wordTarget));

@@ -62,6 +62,12 @@ public class addController implements Initializable {
         });
 
         addBtn.setOnMouseClicked(e -> {
+            if (wordTarget.getText().isEmpty() ||
+                    wordExplain.getText().isEmpty() ||
+                    listWord.contains(this.wordTarget.getText())) {
+                addBtn.setDisable(true);
+                return;
+            }
             addWord(wordTarget.getText(), wordExplain.getText());
 
             FileWriter fw = null;
