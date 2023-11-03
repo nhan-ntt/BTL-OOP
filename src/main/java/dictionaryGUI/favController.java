@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
@@ -35,8 +37,12 @@ public class favController implements Initializable {
     private Button star, volumeBtn;
     @FXML
     private Label wordTarget;
-
+    @FXML
+    private ImageView starImageView = new ImageView();
     ObservableList<String> list = FXCollections.observableArrayList();
+
+    Image starImg = new Image("/Image/star.png", 40, 40, true, true);
+    Image starOutImg = new Image("/Image/star-outline.png", 40, 40, true, true);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -52,12 +58,15 @@ public class favController implements Initializable {
         favList.setItems(list);
 
         favList.setOnMouseClicked(e -> {
+            starImageView.setImage(starImg);
             String selectedWord = favList.getSelectionModel().getSelectedItem();
             Word word = lookupWord(selectedWord);
             wordTarget.setText(word.getWordTarget());
             wordExplain.setText(word.getWordExplain());
         });
-
+        starImageView.setImage(starImg);
+        star.setGraphic(starImageView);
+        wordTarget.setText("");
     }
 
     public void handleStar(MouseEvent mouseEvent) throws IOException {
@@ -80,7 +89,10 @@ public class favController implements Initializable {
             favoriteWord.removeIf((Word w) -> w.getWordTarget().equals(wordTarget));
             favoriteWord.addFirst(favWord);
             favWord.setFavorite(true);
+            starImageView.setImage(starImg);
         } else {
+            starImageView.setImage(starOutImg);
+
             favoriteWord.removeIf((Word w) -> w.getWordTarget().equals(wordTarget));
 
             for (int i = 0; i < list.size(); i++) {
@@ -91,8 +103,8 @@ public class favController implements Initializable {
             }
 
             favList.setItems(list);
-            this.wordExplain.setText("");
-            this.wordTarget.setText("");
+//            this.wordExplain.setText("");
+//            this.wordTarget.setText("");
             favWord.setFavorite(false);
         }
 

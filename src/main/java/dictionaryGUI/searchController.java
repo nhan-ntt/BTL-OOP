@@ -9,6 +9,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
@@ -16,7 +18,6 @@ import javafx.scene.media.MediaPlayer;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
-import javax.swing.text.html.ImageView;
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
@@ -42,6 +43,11 @@ public class searchController implements Initializable {
     private ListView<String> recList;
     @FXML
     private TextArea wordExplain;
+    @FXML
+    private javafx.scene.image.ImageView starImageView = new ImageView();
+
+    Image starImg = new Image("/Image/star.png", 40, 40, true, true);
+    Image starOutImg = new Image("/Image/star-outline.png", 40, 40, true, true);
 
 
     private final int NUM_OF_WORDS = 20;
@@ -81,7 +87,9 @@ public class searchController implements Initializable {
         wordExplain.setEditable(false);
         saveBtn.setVisible(false);
         notAvailable.setVisible(false);
-
+        starImageView.setImage(starOutImg);
+        starBtn.setGraphic(starImageView);
+        wordTarget.setText("");
     }
 
     private void handleOnKeyTyped() {
@@ -114,6 +122,19 @@ public class searchController implements Initializable {
         String selectedWord = recList.getSelectionModel().getSelectedItem();
         Word word = lookupWord(selectedWord);
 //        System.out.println(word.getWordTarget() + " " + word.isFavorite());
+        for (Word w : favoriteWord) {
+            if (w.getWordTarget().equals(selectedWord)) {
+                word = w;
+                break;
+            }
+        }
+
+        if(word.isFavorite()) {
+            starImageView.setImage(starImg);
+        } else {
+            starImageView.setImage(starOutImg);
+        }
+        starBtn.setGraphic(starImageView);
 
         wordTarget.setText(word.getWordTarget());
         wordExplain.setText(word.getWordExplain());
@@ -124,6 +145,7 @@ public class searchController implements Initializable {
         recentWord.removeIf((Word w) -> w.getWordTarget().equals(wordTarget));
         recentWord.addFirst(word);
         exportCustomDictionary();
+
     }
 
     public void handleFavorite(MouseEvent mouseEvent) throws IOException {
@@ -148,9 +170,11 @@ public class searchController implements Initializable {
             favoriteWord.removeIf((Word w) -> w.getWordTarget().equals(wordTarget));
             favoriteWord.addFirst(favWord);
             favWord.setFavorite(true);
+            starImageView.setImage(starImg);
         } else {
             favoriteWord.removeIf((Word w) -> w.getWordTarget().equals(wordTarget));
             favWord.setFavorite(false);
+            starImageView.setImage(starOutImg);
         }
         System.out.println("after " + favWord.getWordTarget() + " " + favWord.isFavorite());
 

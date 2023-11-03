@@ -52,7 +52,9 @@ public class addController implements Initializable {
         });
 
         wordExplain.setOnKeyReleased(e -> {
-            if (wordTarget.getText().isEmpty() || wordExplain.getText().isEmpty()) {
+            if (wordTarget.getText().isEmpty() ||
+                    wordExplain.getText().isEmpty() ||
+                    listWord.contains(this.wordTarget.getText())) {
                 addBtn.setDisable(true);
             } else {
                 addBtn.setDisable(false);

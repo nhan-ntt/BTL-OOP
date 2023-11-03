@@ -75,6 +75,9 @@ public class transController implements Initializable {
         });
 
         speakFromBtn.setOnMouseClicked(e -> {
+            if (input.getText().isEmpty()) {
+                return;
+            }
             generateTextToSpeech(input.getText(), langFromStr);
 
             String gongFile = "output.mp3";
@@ -89,6 +92,9 @@ public class transController implements Initializable {
         });
 
         speakToBtn.setOnMouseClicked(e -> {
+            if (output.getText().isEmpty()) {
+                return;
+            }
             generateTextToSpeech(output.getText(), langToStr);
 
             String gongFile = "output.mp3";

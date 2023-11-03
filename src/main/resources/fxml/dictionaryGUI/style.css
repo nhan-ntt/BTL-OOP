@@ -1,7 +1,17 @@
+@font-face {
+    -fx-font-family: Dosis-ExtraBold;
+    src: url("../../Fonts/Dosis-ExtraBold.ttf");
+}
+@font-face {
+    -fx-font-family: Dosis SemiBold;
+    src: url("../../Fonts/Dosis-SemiBold.ttf");
+}
+
 .root {
     -fx-background-color: linear-gradient(to top, #687EFF, #80B3FF);
     /*-fx-border-radius: 5;*/
     -fx-background-radius: 5;
+
 }
 
 .container {
@@ -11,46 +21,59 @@
 
 .menu-item {
     -fx-background-color: transparent;
-    -fx-background-radius: 30;
-    -fx-padding: 0 0 0 10;
+    -fx-background-radius: 10;
+    /*-fx-padding: 0 0 0 10;*/
+    -fx-background-size: 50 50;
     -fx-background-insets: 0;
     -fx-text-fill: #fff;
     -fx-font-weight: bold;
-
+    -fx-background-repeat: no-repeat;
 }
 
-.menu-item:hover,
-.menu-item:focused{
+.menu-item:hover{
     -fx-background-color: #89CFF3;
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
 }
 
 .word-bar {
-    -fx-background-color:  #6499E9;
+    -fx-background-color:  linear-gradient(to right, #687EFF, #80B3FF);
+    /*#6499E9;*/
     -fx-background-radius: 10;
     /*-fx-effect: dropshadow(three-pass-box, #0C356A, 10, 0, 0, 0);*/
 }
 
+.word-target {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 35px;
+    /*-fx-font-weight: bold;*/
+    -fx-font-family: "Dosis ExtraBold";
+}
+
+
 .english-word-input,
 .meaning-input{
-    -fx-text-fill: #9f45b0;
+    -fx-text-fill: #687EFF;
     -fx-border-color: #190482;
     -fx-font-size: 14px;
     -fx-border-width: 1.5;
-    -fx-background-radius: 5;
-    -fx-border-radius: 5;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
 }
 
 .explanation-field{
-    -fx-background-color: transparent;
-    -fx-background-radius: 10;
-    -fx-border-radius: 10;
-    -fx-border-width: 0;
-    -fx-text-fill: #9f45b0;
-    -fx-font-size: 16px;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-text-fill: #687EFF;
+    -fx-font-size: 20px;
+    -fx-background-color: -fx-box-border, -fx-control-inner-background;
+    -fx-padding: 5;
+
 }
 
 .list-cell{
-    -fx-text-fill: #9f45b0;
+    -fx-text-fill: #687EFF;
     -fx-font-size: 16;
     -fx-font-weight: 700;
     -fx-padding: 5;
@@ -70,7 +93,7 @@
 }
 .list-cell:filled:hover,
 .list-cell:filled:selected{
-    -fx-background-color: linear-gradient(to bottom left, #44008b, #9f45b0);
+    -fx-background-color: linear-gradient(to right, #687EFF, #80B3FF);
     -fx-text-fill: white;
 }
 .list-cell .scroll-bar:horizontal .track,
@@ -112,4 +135,45 @@
     -fx-background-color: #BFB1CD;
     -fx-background-insets: 2, 0, 0;
     -fx-background-radius: 2em;
+}
+
+.add-trans-button{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
+    -fx-text-fill: #ecf0f1;
+    -fx-background-radius: 5px;
+    -fx-font-size: 19px;
+    -fx-font-weight: 700;
+    -fx-background-color: linear-gradient(to right, #687EFF, #80B3FF);
+    -fx-pref-width: 100px;
+    -fx-pref-height: 30px;
+    -fx-font-family: "Dosis ExtraBold";
+}
+
+.search-box{
+    -fx-background-color:  white;
+    -fx-background-radius: 10;
+    /*-fx-border-radius: 30;*/
+    -fx-effect: dropshadow(three-pass-box, #687EFF, 15, 0, 0, 2) ;
+    -fx-font-size: 16px;
+}
+
+.success-alert{
+    -fx-alignment: center;
+    -fx-font-size: 20px;
+    -fx-text-fill: #009432;
+    -fx-background-color:  #CAF7D8;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-font-family: "Dosis SemiBold";
+}
+
+.warning-alert{
+    -fx-font-family: "Dosis SemiBold";
+    -fx-alignment: center;
+    -fx-font-size: 17px;
+    -fx-text-fill: #c41b1b;
+    -fx-background-color:  #F8DADA;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+
 }
