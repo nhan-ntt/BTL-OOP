@@ -1,11 +1,14 @@
-incognizance
-'tec
-'shun
-wondering
-i've
-hello
-'twas
+ASCII (American Standard Code for Information Interchange) text
+AM (amplitude-modulated) receiver
+ALGOL (algorithmic oriented language)
+ALGOL (algorithmic language)
+ALGOL (algebraic oriented language)
+ACK (Acknowledge <Positive>)
+4th Generation Language (4GL)
+1 to many relationship
+3D (three dimension) configuration
+2D configuration
+-th
+'gainst
+'twixt
 'cellist
-'s
--merous
-darkness

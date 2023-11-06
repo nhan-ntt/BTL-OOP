@@ -2,46 +2,14 @@
 
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dictionaryGUI.baseSceneController">
    <children>
-      <AnchorPane fx:id="container" layoutX="8.0" layoutY="8.0" prefHeight="532.0" prefWidth="984.0" styleClass="container" stylesheets="@style.css" />
-      <Button fx:id="searchBtn" layoutX="177.0" layoutY="545.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="menu-item">
-         <graphic>
-            <ImageView fitHeight="37.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../Image/information.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
-      <Button fx:id="favBtn" layoutX="268.0" layoutY="545.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="menu-item">
-         <graphic>
-            <ImageView fitHeight="37.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../Image/star1.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
-      <Button fx:id="gameBtn" layoutX="667.0" layoutY="546.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="menu-item" stylesheets="@style.css">
-         <graphic>
-            <ImageView fitHeight="150.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../Image/game-controller.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
-      <Button fx:id="exitBtn" layoutX="898.0" layoutY="546.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="menu-item">
-         <graphic>
-            <ImageView fitHeight="60.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../Image/logout.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
-      <Button fx:id="homeBtn" layoutX="473.0" layoutY="544.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="menu-item" stylesheets="@style.css">
+      <Button fx:id="homeBtn" layoutX="57.0" layoutY="544.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="base-button">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -49,16 +17,67 @@
                </image>
             </ImageView>
          </graphic>
+         <tooltip>
+            <Tooltip fx:id="homeT" text="Home" />
+         </tooltip>
       </Button>
-      <Button fx:id="addBtn" layoutX="367.0" layoutY="545.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="menu-item">
+      <AnchorPane fx:id="container" layoutX="8.0" layoutY="8.0" prefHeight="532.0" prefWidth="984.0" styleClass="container" stylesheets="@style.css" />
+      <Button fx:id="searchBtn" layoutX="277.0" layoutY="545.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="base-button">
+         <graphic>
+            <ImageView fitHeight="37.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Image/information.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <tooltip>
+            <Tooltip fx:id="searchT" text="Search" />
+         </tooltip></Button>
+      <Button fx:id="favBtn" layoutX="378.0" layoutY="545.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="base-button">
+         <graphic>
+            <ImageView fitHeight="37.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Image/star1.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <tooltip>
+            <Tooltip fx:id="favT" text="Favorites" />
+         </tooltip></Button>
+      <Button fx:id="gameBtn" layoutX="655.0" layoutY="546.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="base-button" stylesheets="@style.css">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Image/game-controller.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <tooltip>
+            <Tooltip fx:id="gameT" text="Game" />
+         </tooltip></Button>
+      <Button fx:id="exitBtn" layoutX="882.0" layoutY="546.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="base-button">
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Image/logout.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <tooltip>
+            <Tooltip fx:id="exitT" text="Leave" />
+         </tooltip></Button>
+      <Button fx:id="addBtn" layoutX="472.0" layoutY="545.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="base-button">
          <graphic>
             <ImageView accessibleRole="BUTTON" fitHeight="40.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../Image/add.png" />
                </image>
             </ImageView>
-         </graphic></Button>
-      <Button fx:id="transBtn" layoutX="575.0" layoutY="546.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="menu-item">
+         </graphic>
+         <tooltip>
+            <Tooltip fx:id="addT" text="Add new word" />
+         </tooltip></Button>
+      <Button fx:id="transBtn" layoutX="566.0" layoutY="546.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="base-button">
          <graphic>
             <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -69,6 +88,9 @@
                </viewport>
             </ImageView>
          </graphic>
+         <tooltip>
+            <Tooltip fx:id="transT" text="Translate" />
+         </tooltip>
       </Button>
    </children>
 </AnchorPane>

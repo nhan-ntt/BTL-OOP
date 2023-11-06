@@ -19,7 +19,8 @@
     -fx-background-color: #E4F1FF;
 }
 
-.menu-item {
+.menu-item,
+.base-button {
     -fx-background-color: transparent;
     -fx-background-radius: 10;
     /*-fx-padding: 0 0 0 10;*/
@@ -27,13 +28,29 @@
     -fx-background-insets: 0;
     -fx-text-fill: #fff;
     -fx-font-weight: bold;
-    -fx-background-repeat: no-repeat;
+    /*-fx-background-repeat: no-repeat;*/
 }
 
-.menu-item:hover{
+.menu-item:hover,
+.base-button:hover{
     -fx-background-color: #89CFF3;
-    -fx-scale-x: 1.2;
-    -fx-scale-y: 1.2;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.base-button:pressed{
+    -fx-background-color: #89CC;
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.9;
+}
+
+.base-button:focused{
+    -fx-background-color: #687EDA;
+}
+
+.rounded-image {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
 }
 
 .word-bar {

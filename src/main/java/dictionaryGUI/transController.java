@@ -57,10 +57,11 @@ public class transController implements Initializable {
             setLabelFromCode(langTo, langToStr);
         });
 
-        input.setOnMouseClicked(e -> {
-            input.setText("");
-            output.setText("");
-        });
+        output.setEditable(false);
+//        input.setOnMouseClicked(e -> {
+//            input.setText("");
+//            output.setText("");
+//        });
 
         transBtn.setOnMouseClicked(e -> {
             if (input.getText().isEmpty()) {
@@ -78,7 +79,7 @@ public class transController implements Initializable {
             if (input.getText().isEmpty()) {
                 return;
             }
-            generateTextToSpeech(input.getText(), langFromStr);
+            generateTextToSpeech(input.getText(), langFrom.getText());
 
             String gongFile = "output.mp3";
             InputStream in = null;
@@ -95,7 +96,7 @@ public class transController implements Initializable {
             if (output.getText().isEmpty()) {
                 return;
             }
-            generateTextToSpeech(output.getText(), langToStr);
+            generateTextToSpeech(output.getText(), langTo.getText());
 
             String gongFile = "output.mp3";
             InputStream in = null;

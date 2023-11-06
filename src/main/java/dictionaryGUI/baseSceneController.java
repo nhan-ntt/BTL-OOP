@@ -21,30 +21,43 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+
 public class baseSceneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showComponent("/fxml/dictionaryGUI/homeScene.fxml");
+        homeBtn.setDefaultButton(true);
+
+        homeBtn.setOnAction(e -> {
+            showComponent("/fxml/dictionaryGUI/homeScene.fxml");
+            resetBtnStyle();
+            homeBtn.setStyle("-fx-background-color: #687EDA;");
+        });
 
         searchBtn.setOnAction(e -> {
            showComponent("/fxml/dictionaryGUI/searchScene.fxml");
+           resetBtnStyle();
+           searchBtn.setStyle("-fx-background-color: #687EDA;");
         });
 
         favBtn.setOnAction(e -> {
             showComponent("/fxml/dictionaryGUI/favScene.fxml");
+            resetBtnStyle();
+            favBtn.setStyle("-fx-background-color: #687EDA;");
         });
 
         addBtn.setOnAction(e -> {
             showComponent("/fxml/dictionaryGUI/addScene.fxml");
+            resetBtnStyle();
+            addBtn.setStyle("-fx-background-color: #687EDA;");
         });
 
         transBtn.setOnAction(e -> {
             showComponent("/fxml/dictionaryGUI/transScene.fxml");
+            resetBtnStyle();
+            transBtn.setStyle("-fx-background-color: #687EDA;");
         });
 
-        homeBtn.setOnAction(e -> {
-            showComponent("/fxml/dictionaryGUI/homeScene.fxml");
-        });
 
         gameBtn.setOnAction(e -> {
             Introduce introduce = new Introduce();
@@ -58,6 +71,8 @@ public class baseSceneController implements Initializable {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+            resetBtnStyle();
+            gameBtn.setStyle("-fx-background-color: #687EDA;");
         });
 
 
@@ -69,6 +84,15 @@ public class baseSceneController implements Initializable {
 ////        tooltip2.setShowDelay(Duration.seconds(0.5));
 ////        tooltip3.setShowDelay(Duration.seconds(0.5));
 
+    }
+
+    private void resetBtnStyle() {
+        homeBtn.setStyle("");
+        favBtn.setStyle("");
+        addBtn.setStyle("");
+        searchBtn.setStyle("");
+        transBtn.setStyle("");
+        gameBtn.setStyle("");
     }
 
     private void setNode(Node node) {
@@ -87,9 +111,12 @@ public class baseSceneController implements Initializable {
     }
 
 
+
     @FXML
-    private Button searchBtn, favBtn, addBtn, transBtn, homeBtn, gameBtn, exitBtn;
+    private Button homeBtn, favBtn, addBtn, searchBtn, transBtn, gameBtn, exitBtn;
 
     @FXML
     private AnchorPane container;
+    @FXML
+    private Tooltip searchT, favT, addT, transT, homeT, gameT, exitT;
 }

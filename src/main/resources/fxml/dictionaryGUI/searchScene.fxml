@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,6 +21,9 @@
                <font>
                   <Font name="Dosis ExtraBold" size="31.0" />
                </font>
+               <tooltip>
+                  <Tooltip fx:id="wordTooltip" text="Empty Tooltip" />
+               </tooltip>
             </Label>
             <Button fx:id="editBtn" layoutX="528.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#handleEdit" styleClass="menu-item">
                <graphic>
@@ -28,7 +32,10 @@
                         <Image url="@../../Image/pencil.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Edit" />
+               </tooltip></Button>
             <Button fx:id="deleteBtn" layoutX="600.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#handleDelete" styleClass="menu-item">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
@@ -36,7 +43,10 @@
                         <Image url="@../../Image/trash.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Delete" />
+               </tooltip></Button>
             <Button fx:id="volumeBtn" layoutX="377.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#handleSpeak" styleClass="menu-item">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
@@ -44,8 +54,14 @@
                         <Image url="@../../Image/sound1.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Button fx:id="starBtn" layoutX="454.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#handleFavorite" prefHeight="50.0" prefWidth="50.0" styleClass="menu-item" />
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Listen" />
+               </tooltip></Button>
+            <Button fx:id="starBtn" layoutX="454.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#handleFavorite" prefHeight="50.0" prefWidth="50.0" styleClass="menu-item">
+               <tooltip>
+                  <Tooltip text="Add to favorites" />
+               </tooltip></Button>
          </children>
       </Pane>
       <ListView fx:id="recList" layoutX="713.0" layoutY="118.0" onMouseClicked="#handleMouseClickAWord" prefHeight="390.0" prefWidth="244.0" styleClass="list-cell" />

@@ -6,10 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -39,10 +36,14 @@ public class favController implements Initializable {
     private Label wordTarget;
     @FXML
     private ImageView starImageView = new ImageView();
+    @FXML
+    private Tooltip favTooltip, wordTooltip;
+
     ObservableList<String> list = FXCollections.observableArrayList();
 
-    Image starImg = new Image("/Image/star.png", 40, 40, true, true);
+    Image starImg = new Image("/Image/star1.png", 40, 40, true, true);
     Image starOutImg = new Image("/Image/star-outline.png", 40, 40, true, true);
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -58,10 +59,18 @@ public class favController implements Initializable {
         favList.setItems(list);
 
         favList.setOnMouseClicked(e -> {
+            favTooltip.setText("Remove from favorites");
+
             starImageView.setImage(starImg);
             String selectedWord = favList.getSelectionModel().getSelectedItem();
             Word word = lookupWord(selectedWord);
-            wordTarget.setText(word.getWordTarget());
+
+            if (selectedWord.length() > 30) {
+                wordTarget.setText(word.getWordTarget().substring(0, 30) + "...");
+            } else {
+                wordTarget.setText(word.getWordTarget());
+            }
+            wordTooltip.setText(word.getWordTarget());
             wordExplain.setText(word.getWordExplain());
         });
         starImageView.setImage(starImg);
@@ -88,13 +97,14 @@ public class favController implements Initializable {
         if (favWord == null) return;
 
         if (!favWord.isFavorite()) {
-            favoriteWord.removeIf((Word w) -> w.getWordTarget().equals(wordTarget));
-            favoriteWord.addFirst(favWord);
+//            favoriteWord.removeIf((Word w) -> w.getWordTarget().equals(wordTarget));
+//            favoriteWord.addFirst(favWord);
+            favTooltip.setText("");
             favWord.setFavorite(true);
             starImageView.setImage(starImg);
         } else {
             starImageView.setImage(starOutImg);
-
+            favTooltip.setText("Remove from favorites");
             favoriteWord.removeIf((Word w) -> w.getWordTarget().equals(wordTarget));
 
             for (int i = 0; i < list.size(); i++) {
@@ -108,13 +118,16 @@ public class favController implements Initializable {
 //            this.wordExplain.setText("");
 //            this.wordTarget.setText("");
             favWord.setFavorite(false);
+            favTooltip.setText("");
         }
 
         exportCustomDictionary();
     }
 
     public void handleSpeak(MouseEvent mouseEvent) {
-        generateTextToSpeech(wordTarget.getText(), "English");
+        if (wordTarget.getText().isEmpty()) return;
+
+        generateTextToSpeech(wordTooltip.getText(), "English");
 
         String gongFile = "output.mp3";
         InputStream in = null;

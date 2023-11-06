@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="container" prefHeight="532.0" prefWidth="984.0" styleClass="container" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="container" prefHeight="532.0" prefWidth="984.0" style="-fx-background-radius: 10;" styleClass="container" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="512.0" fitWidth="940.0" layoutX="37.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="532.0" fitWidth="984.0" pickOnBounds="true" styleClass="rounded-image">
          <image>
-            <Image url="@../../Image/ddangddangg.png" />
+            <Image url="@../../Image/Dictionary.png" />
          </image>
       </ImageView>
-      <Label layoutX="31.0" layoutY="25.0" text="học bài đi chi bai lo ma" textFill="#450a0a">
-         <font>
-            <Font size="23.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

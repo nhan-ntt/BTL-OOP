@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,11 +19,17 @@
             <Button fx:id="star" layoutX="603.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#handleStar" prefHeight="50.0" prefWidth="50.0" styleClass="menu-item">
                <graphic>
                   <ImageView fx:id="starImage" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
-               </graphic></Button>
-            <Label fx:id="wordTarget" layoutX="14.0" layoutY="12.0" prefHeight="37.0" prefWidth="373.0" styleClass="word-target" text="word">
+               </graphic>
+               <tooltip>
+                  <Tooltip fx:id="favTooltip" text="Empty Tooltip" />
+               </tooltip></Button>
+            <Label fx:id="wordTarget" layoutX="14.0" layoutY="12.0" prefHeight="46.0" prefWidth="454.0" styleClass="word-target">
                <font>
                   <Font name="Dosis ExtraBold" size="31.0" />
-               </font></Label>
+               </font>
+               <tooltip>
+                  <Tooltip fx:id="wordTooltip" text="Empty Tooltip" />
+               </tooltip></Label>
             <Button fx:id="volumeBtn" layoutX="526.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#handleSpeak" prefHeight="40.0" prefWidth="40.0" styleClass="menu-item">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
@@ -30,7 +37,10 @@
                         <Image url="@../../Image/sound1.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Listen" />
+               </tooltip></Button>
          </children>
       </Pane>
       <TextArea fx:id="wordExplain" layoutX="29.0" layoutY="197.0" prefHeight="310.0" prefWidth="675.0" styleClass="explanation-field" />

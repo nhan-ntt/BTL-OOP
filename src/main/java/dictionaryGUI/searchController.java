@@ -44,9 +44,11 @@ public class searchController implements Initializable {
     @FXML
     private TextArea wordExplain;
     @FXML
+    private Tooltip wordTooltip;
+    @FXML
     private javafx.scene.image.ImageView starImageView = new ImageView();
 
-    Image starImg = new Image("/Image/star.png", 40, 40, true, true);
+    Image starImg = new Image("/Image/star1.png", 40, 40, true, true);
     Image starOutImg = new Image("/Image/star-outline.png", 40, 40, true, true);
 
 
@@ -136,7 +138,13 @@ public class searchController implements Initializable {
         }
         starBtn.setGraphic(starImageView);
 
-        wordTarget.setText(word.getWordTarget());
+        if (selectedWord.length() > 22) {
+            wordTarget.setText(word.getWordTarget().substring(0, 22) + "...");
+        } else {
+            wordTarget.setText(word.getWordTarget());
+        }
+        wordTooltip.setText(word.getWordTarget());
+
         wordExplain.setText(word.getWordExplain());
         wordExplain.setVisible(true);
         wordExplain.setEditable(false);
@@ -188,7 +196,9 @@ public class searchController implements Initializable {
     }
 
     public void handleSpeak(MouseEvent mouseEvent) throws Exception {
-        generateTextToSpeech(wordTarget.getText(), "English");
+        if (wordTarget.getText().isEmpty()) return;
+
+        generateTextToSpeech(wordTooltip.getText(), "English");
 
         String gongFile = "output.mp3";
         InputStream in = Files.newInputStream(Paths.get(gongFile));
