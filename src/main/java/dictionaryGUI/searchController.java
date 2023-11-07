@@ -2,6 +2,7 @@ package dictionaryGUI;
 
 import commandLine.DictionaryManagement;
 import commandLine.Word;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -138,18 +139,20 @@ public class searchController implements Initializable {
         }
         starBtn.setGraphic(starImageView);
 
-        if (selectedWord.length() > 22) {
-            wordTarget.setText(word.getWordTarget().substring(0, 22) + "...");
-        } else {
-            wordTarget.setText(word.getWordTarget());
-        }
-        wordTooltip.setText(word.getWordTarget());
+        final Word finalWord = word;
+        Platform.runLater(() -> {
+                    if (finalWord.getWordTarget().length() > 22) {
+                        wordTarget.setText(finalWord.getWordTarget().substring(0, 22) + "...");
+                    } else {
+                        wordTarget.setText(finalWord.getWordTarget());
+                    }
+                    wordTooltip.setText(finalWord.getWordTarget());
 
-        wordExplain.setText(word.getWordExplain());
-        wordExplain.setVisible(true);
-        wordExplain.setEditable(false);
-        saveBtn.setVisible(false);
-
+                    wordExplain.setText(finalWord.getWordExplain());
+                    wordExplain.setVisible(true);
+                    wordExplain.setEditable(false);
+                    saveBtn.setVisible(false);
+                });
         recentWord.removeIf((Word w) -> w.getWordTarget().equals(wordTarget));
         recentWord.addFirst(word);
         exportCustomDictionary();
@@ -186,24 +189,33 @@ public class searchController implements Initializable {
         }
         System.out.println("after " + favWord.getWordTarget() + " " + favWord.isFavorite());
 
+
         exportCustomDictionary();
     }
 
     public void handleSave(MouseEvent mouseEvent) {
         saveBtn.setVisible(false);
         wordExplain.setEditable(false);
-        listWord.changeMeaning(wordTarget.getText(), wordExplain.getText());
+        new Thread(() -> {
+            listWord.changeMeaning(wordTarget.getText(), wordExplain.getText());
+        }).start();
     }
 
     public void handleSpeak(MouseEvent mouseEvent) throws Exception {
         if (wordTarget.getText().isEmpty()) return;
 
-        generateTextToSpeech(wordTooltip.getText(), "English");
+        new Thread(() -> {
+            try {
+                generateTextToSpeech(wordTooltip.getText(), "English");
 
-        String gongFile = "output.mp3";
-        InputStream in = Files.newInputStream(Paths.get(gongFile));
-        AudioStream audioStream = new AudioStream(in);
-        AudioPlayer.player.start(audioStream);
+                String gongFile = "output.mp3";
+                InputStream in = Files.newInputStream(Paths.get(gongFile));
+                AudioStream audioStream = new AudioStream(in);
+                AudioPlayer.player.start(audioStream);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 
     public void handleDelete(MouseEvent mouseEvent) {
@@ -216,10 +228,14 @@ public class searchController implements Initializable {
                 break;
             }
         }
-
-        recList.setItems(list);
-        wordExplain.setText("");
-        wordTarget.setText("");
+        Platform.runLater(() -> {
+            recList.setItems(list);
+            wordExplain.setText("");
+            wordTarget.setText("");
+        });
+        new Thread(() -> {
+            removeWord(wordTarget.getText());
+        }).start();
     }
 
     public void handleEdit(MouseEvent mouseEvent) {

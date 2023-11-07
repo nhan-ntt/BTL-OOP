@@ -126,17 +126,18 @@ public class favController implements Initializable {
 
     public void handleSpeak(MouseEvent mouseEvent) {
         if (wordTarget.getText().isEmpty()) return;
-
+        Thread speakFromThread = new Thread(() -> {
         generateTextToSpeech(wordTooltip.getText(), "English");
 
         String gongFile = "output.mp3";
         InputStream in = null;
+
         try {
             in = Files.newInputStream(Paths.get(gongFile));
             AudioStream audioStream = new AudioStream(in);
             AudioPlayer.player.start(audioStream);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
-        }
+        }});
     }
 }

@@ -1,11 +1,11 @@
 package dictionaryGUI;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
@@ -29,7 +29,6 @@ public class transController implements Initializable {
 
     String langFromStr, langToStr;
 
-
     void setLabelFromCode(Label lb, String lang) {
         if (lang.equals("vi")) {
             lb.setText("Vietnamese");
@@ -38,7 +37,6 @@ public class transController implements Initializable {
             lb.setText("English");
         }
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -58,55 +56,47 @@ public class transController implements Initializable {
         });
 
         output.setEditable(false);
-//        input.setOnMouseClicked(e -> {
-//            input.setText("");
-//            output.setText("");
-//        });
 
         transBtn.setOnMouseClicked(e -> {
             if (input.getText().isEmpty()) {
                 return;
             }
 
-            try {
-                output.setText(translate(langFromStr, langToStr, input.getText()));
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            // Xử lý dịch văn bản trong một luồng mới
+            Thread translationThread = new Thread(() -> {
+                try {
+                    String translatedText = translate(langFromStr, langToStr, input.getText());
+                    // Cập nhật giao diện người dùng từ luồng chính
+                    Platform.runLater(() -> {
+                        output.setText(translatedText);
+                    });
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            translationThread.start();
         });
 
         speakFromBtn.setOnMouseClicked(e -> {
             if (input.getText().isEmpty()) {
                 return;
             }
-            generateTextToSpeech(input.getText(), langFrom.getText());
 
-            String gongFile = "output.mp3";
-            InputStream in = null;
-            try {
-                in = newInputStream(Paths.get(gongFile));
-                AudioStream audioStream = new AudioStream(in);
-                AudioPlayer.player.start(audioStream);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+            // Tạo một luồng mới để phát âm thanh
+            Thread speakFromThread = new Thread(() -> {
+                generateTextToSpeech(input.getText(), langFrom.getText());
 
-        speakToBtn.setOnMouseClicked(e -> {
-            if (output.getText().isEmpty()) {
-                return;
-            }
-            generateTextToSpeech(output.getText(), langTo.getText());
-
-            String gongFile = "output.mp3";
-            InputStream in = null;
-            try {
-                in = newInputStream(Paths.get(gongFile));
-                AudioStream audioStream = new AudioStream(in);
-                AudioPlayer.player.start(audioStream);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+                String gongFile = "output.mp3";
+                InputStream in = null;
+                try {
+                    in = newInputStream(Paths.get(gongFile));
+                    AudioStream audioStream = new AudioStream(in);
+                    AudioPlayer.player.start(audioStream);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            speakFromThread.start();
         });
     }
 }
