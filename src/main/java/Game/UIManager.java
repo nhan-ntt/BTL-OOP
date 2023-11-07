@@ -13,6 +13,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 import static javafx.scene.paint.Color.TRANSPARENT;
 import static javafx.scene.paint.Color.WHITE;
 
@@ -72,6 +74,19 @@ public class UIManager {
 
         // Đặt StackPane vào trung tâm của BorderPane
         root.setCenter(stackPane);
+        PlayAgain();
+    }
+    void PlayAgain() {
+        SubmitButton.setText("Replay");
+        SubmitButton.setOnAction(event -> {
+            Introduce introduce = new Introduce();
+            try {
+                introduce.start(stage);
+                gameManager.soundManager.stopSoundEffect();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
     private void InformationFunc(BorderPane root,String style)
     {

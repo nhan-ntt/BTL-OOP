@@ -32,15 +32,17 @@ public class RandomWord {
             return null;
         }
 
+        int randomPosition=0;
+        char randomChar='h';
         while (randomWord.length() > 12 || randomWord.length()<=1 ) {
             Random random = new Random();
             int randomIndex = random.nextInt(words.size());
             randomWord = words.get(randomIndex);
-            int randomPosition = random.nextInt(randomWord.length());
-            char randomChar = (char) (random.nextInt(26) + 'a');
-            return randomWord.substring(0, randomPosition) + randomChar + randomWord.substring(randomPosition);
+           // System.out.println(randomWord);
+            randomPosition = random.nextInt(randomWord.length());
+            randomChar = (char) (random.nextInt(26) + 'a');
         }
-        return "hellou";
+        return randomWord.substring(0, randomPosition) + randomChar + randomWord.substring(randomPosition);
     }
 
     public static void main(String[] args) {
