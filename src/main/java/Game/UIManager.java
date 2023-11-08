@@ -77,7 +77,7 @@ public class UIManager {
         PlayAgain();
     }
     void PlayAgain() {
-        SubmitButton.setText("Replay");
+        SubmitButton.setText("Restart");
         SubmitButton.setOnAction(event -> {
             Introduce introduce = new Introduce();
             try {

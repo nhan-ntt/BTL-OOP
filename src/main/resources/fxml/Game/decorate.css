@@ -8,7 +8,9 @@
     -fx-font-size: 90;
     -fx-text-fill: #eb4d7d;
 }
-
+.fav {
+    -fx-font-family: 'Hobo Bold';
+}
 .letter_white {
     -fx-font-family: 'Hobo Bold';
     -fx-font-size: 90;
