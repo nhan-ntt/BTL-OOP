@@ -80,7 +80,7 @@ public class favController implements Initializable {
 
     public void handleStar(MouseEvent mouseEvent) throws IOException {
         if (wordTarget.getText().isEmpty()) return;
-        String wordTarget = this.wordTarget.getText();
+        String wordTarget = this.wordTooltip.getText();
 
         Word favWord = null;
 
@@ -108,7 +108,7 @@ public class favController implements Initializable {
             favoriteWord.removeIf((Word w) -> w.getWordTarget().equals(wordTarget));
 
             for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).equals(this.wordTarget.getText())) {
+                if (list.get(i).equals(this.wordTooltip.getText())) {
                     list.remove(i);
                     break;
                 }

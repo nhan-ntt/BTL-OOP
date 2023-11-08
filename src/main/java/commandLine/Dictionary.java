@@ -10,10 +10,4 @@ public class Dictionary {
     public static Trie listWord = new Trie();
     public static LinkedList<Word> favoriteWord = new LinkedList<Word>();
     public static LinkedList<Word> recentWord = new LinkedList<Word>();
-
-    public static void main(String[] args) throws IOException {
-        for (Word word : recentWord) {
-            System.out.println(word.toString());
-        }
-    }
 }

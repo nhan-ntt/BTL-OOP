@@ -8,7 +8,7 @@
 }
 
 .root {
-    -fx-background-color: linear-gradient(to top, #687EFF, #80B3FF);
+    -fx-background-color: linear-gradient(to bottom, #B9CFFF, #687EFF);
     /*-fx-border-radius: 5;*/
     -fx-background-radius: 5;
 

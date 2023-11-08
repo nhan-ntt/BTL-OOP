@@ -13,7 +13,7 @@
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Image/online-lesson.png" />
+                  <Image url="@../../Image/menu.png" />
                </image>
             </ImageView>
          </graphic>
@@ -26,7 +26,7 @@
          <graphic>
             <ImageView fitHeight="37.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Image/information.png" />
+                  <Image url="@../../Image/search.png" />
                </image>
             </ImageView>
          </graphic>
@@ -35,7 +35,7 @@
          </tooltip></Button>
       <Button fx:id="favBtn" layoutX="378.0" layoutY="545.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="base-button">
          <graphic>
-            <ImageView fitHeight="37.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../Image/star1.png" />
                </image>
@@ -48,7 +48,7 @@
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Image/game-controller.png" />
+                  <Image url="@../../Image/game.png" />
                </image>
             </ImageView>
          </graphic>

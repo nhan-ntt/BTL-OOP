@@ -17,9 +17,6 @@ import static commandLine.DictionaryManagement.insertFromFileDICT;
 
 public class DictionaryApp extends Application {
 
-    private double xOffset = 0;
-    private double yOffset = 0;
-
     public static void main(String[] args) throws IOException {
         importCustomDictionary();
         insertFromFileDICT();

@@ -1,9 +1,4 @@
+lechery
+-way
+'twere
 'cellist
-ASCII (American Standard Code for Information Interchange) text
-AM (amplitude-modulated) receiver
-ALGOL (algorithmic oriented language)
-ALGOL (algebraic oriented language)
-3D (three dimension) configuration
-2D configuration
-'gainst
-'twixt
