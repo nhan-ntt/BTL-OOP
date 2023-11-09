@@ -153,6 +153,7 @@ public class Trie {
     public List<Word> getAllWords() {
         List<Word> result = new ArrayList<>();
         trieToList(root, "", result);
+        System.out.println(result.size());
         return result;
     }
 

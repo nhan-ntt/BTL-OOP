@@ -74,6 +74,7 @@ public class searchController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setListDefault();
+        wordExplain.setWrapText(true);
         try {
             importCustomDictionary();
         } catch (IOException e) {
@@ -141,18 +142,18 @@ public class searchController implements Initializable {
 
         final Word finalWord = word;
         Platform.runLater(() -> {
-                    if (finalWord.getWordTarget().length() > 22) {
-                        wordTarget.setText(finalWord.getWordTarget().substring(0, 22) + "...");
-                    } else {
-                        wordTarget.setText(finalWord.getWordTarget());
-                    }
-                    wordTooltip.setText(finalWord.getWordTarget());
+            if (finalWord.getWordTarget().length() > 22) {
+                wordTarget.setText(finalWord.getWordTarget().substring(0, 22) + "...");
+            } else {
+                wordTarget.setText(finalWord.getWordTarget());
+            }
+            wordTooltip.setText(finalWord.getWordTarget());
 
-                    wordExplain.setText(finalWord.getWordExplain());
-                    wordExplain.setVisible(true);
-                    wordExplain.setEditable(false);
-                    saveBtn.setVisible(false);
-                });
+            wordExplain.setText(finalWord.getWordExplain());
+            wordExplain.setVisible(true);
+            wordExplain.setEditable(false);
+            saveBtn.setVisible(false);
+        });
         recentWord.removeIf((Word w) -> w.getWordTarget().equals(wordTarget));
         recentWord.addFirst(word);
         exportCustomDictionary();

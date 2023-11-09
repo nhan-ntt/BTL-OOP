@@ -34,7 +34,7 @@ public class RandomWord {
 
         int randomPosition=0;
         char randomChar='h';
-        while (randomWord.length() > 12 || randomWord.length()<=1 ) {
+        while (randomWord.length() > 10 || randomWord.length()<=1 ) {
             Random random = new Random();
             int randomIndex = random.nextInt(words.size());
             randomWord = words.get(randomIndex);

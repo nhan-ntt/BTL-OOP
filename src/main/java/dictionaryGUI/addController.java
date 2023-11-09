@@ -74,7 +74,7 @@ public class addController implements Initializable {
                 fw = new FileWriter("src\\main\\resources\\addWord.txt", true);
                 fw.write("@" + wordTarget.getText() + "\n");
                 fw.write(wordExplain.getText());
-                fw.write("\n\n");
+                fw.write("\n");
                 fw.close();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);

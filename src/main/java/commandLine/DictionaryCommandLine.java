@@ -15,7 +15,9 @@ public class DictionaryCommandLine extends DictionaryManagement{
             id++;
             System.out.printf("%-10d| %-20s| %s\n", id, w.getWordTarget(), w.getWordExplain());
         }
+        System.out.println(id);
     }
+
 
 
 
@@ -119,10 +121,13 @@ public class DictionaryCommandLine extends DictionaryManagement{
     }
 
     public static void main(String[] args) {
-        try {
-            dictionaryAdvanced();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            dictionaryAdvanced();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+        DictionaryCommandLine a = new DictionaryCommandLine();
+        a.showAllWords();
+
     }
 }
