@@ -13,8 +13,8 @@
 
 <AnchorPane prefHeight="532.0" prefWidth="984.0" styleClass="container" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dictionaryGUI.addController">
    <children>
-      <TextArea fx:id="wordExplain" layoutX="30.0" layoutY="170.0" prefHeight="266.0" prefWidth="917.0" promptText="Type meaning" styleClass="explanation-field" />
-      <Label fx:id="existed" layoutX="299.0" layoutY="44.0" prefHeight="30.0" prefWidth="266.0" styleClass="warning-alert" text="This word is already existed">
+      <TextArea fx:id="wordExplain" layoutX="30.0" layoutY="170.0" prefHeight="290.0" prefWidth="925.0" promptText="Type meaning" styleClass="explanation-field" />
+      <Label fx:id="existed" layoutX="681.0" layoutY="45.0" prefHeight="30.0" prefWidth="266.0" styleClass="warning-alert" text="This word is already existed">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -22,17 +22,17 @@
                </image>
             </ImageView>
          </graphic></Label>
-      <Pane layoutX="30.0" layoutY="90.0" prefHeight="70.0" prefWidth="917.0" styleClass="word-bar" stylesheets="@style.css">
+      <Pane layoutX="30.0" layoutY="90.0" prefHeight="70.0" prefWidth="925.0" styleClass="word-bar" stylesheets="@style.css">
          <children>
             <TextField fx:id="wordTarget" layoutY="1.0" prefHeight="70.0" prefWidth="913.0" promptText="Type word" styleClass="word-target" />
          </children>
       </Pane>
-      <Button fx:id="addBtn" layoutX="442.0" layoutY="463.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="96.0" styleClass="add-trans-button" text="add">
+      <Button fx:id="addBtn" layoutX="441.0" layoutY="476.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="96.0" styleClass="add-trans-button" text="add">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Label fx:id="ok" layoutX="553.0" layoutY="465.0" prefHeight="35.0" prefWidth="255.0" styleClass="success-alert" stylesheets="@style.css" text="Added successfully">
+      <Label fx:id="ok" layoutX="552.0" layoutY="478.0" prefHeight="35.0" prefWidth="255.0" styleClass="success-alert" stylesheets="@style.css" text="Added successfully">
          <font>
             <Font size="19.0" />
          </font>
@@ -44,14 +44,14 @@
             </ImageView>
          </graphic>
       </Label>
-      <Text fill="#00224a" layoutX="88.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Word">
+      <Text fill="#00224a" layoutX="90.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="heading-text" text="Add Word">
          <font>
             <Font name="Dosis ExtraBold" size="48.0" />
          </font>
       </Text>
-      <ImageView fitHeight="52.0" fitWidth="49.0" layoutX="30.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="30.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Add.png" />
+            <Image url="@../../Image/Add.png" />
          </image>
       </ImageView>
    </children>

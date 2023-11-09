@@ -14,6 +14,14 @@
 
 }
 
+.heading-text {
+    -fx-font-size: 40px;
+    -fx-font-family: "Dosis ExtraBold";
+    -fx-fill: #0F5891;
+    -fx-text-fill: #fff;
+    -fx-font-weight: bold;
+}
+
 .container {
     -fx-background-radius: 5;
     -fx-background-color: #E4F1FF;

@@ -43,6 +43,9 @@ public class transController implements Initializable {
         langFromStr = "en";
         langToStr = "vi";
 
+        input.setWrapText(true);
+        output.setWrapText(true);
+
         setLabelFromCode(langFrom, langFromStr);
         setLabelFromCode(langTo, langToStr);
 
@@ -97,6 +100,28 @@ public class transController implements Initializable {
                 }
             });
             speakFromThread.start();
+        });
+
+        speakToBtn.setOnMouseClicked(e -> {
+            if (output.getText().isEmpty()) {
+                return;
+            }
+
+            // Tạo một luồng mới để phát âm thanh
+            Thread speakToThread = new Thread(() -> {
+                generateTextToSpeech(output.getText(), langTo.getText());
+
+                String gongFile = "output.mp3";
+                InputStream in = null;
+                try {
+                    in = newInputStream(Paths.get(gongFile));
+                    AudioStream audioStream = new AudioStream(in);
+                    AudioPlayer.player.start(audioStream);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            speakToThread.start();
         });
     }
 }

@@ -30,10 +30,9 @@ public class addController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ok.setVisible(false);
         existed.setVisible(false);
+        wordExplain.setWrapText(true);
 
         wordTarget.setOnMouseClicked(e -> {
-            wordTarget.setText("");
-            wordExplain.setText("");
             addBtn.setDisable(true);
             ok.setVisible(false);
             existed.setVisible(false);

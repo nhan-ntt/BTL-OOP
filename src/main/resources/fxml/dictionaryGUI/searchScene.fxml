@@ -83,14 +83,14 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Text fill="#00224a" layoutX="789.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Look Up">
+      <Text fill="#00224a" layoutX="788.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="heading-text" text="Look Up">
          <font>
             <Font name="Dosis ExtraBold" size="48.0" />
          </font>
       </Text>
       <ImageView fitHeight="61.0" fitWidth="62.0" layoutX="716.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@LookUp.png" />
+            <Image url="@../../Image/LookUp.png" />
          </image>
       </ImageView>
    </children>

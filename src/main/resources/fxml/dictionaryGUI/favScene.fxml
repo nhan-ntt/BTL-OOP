@@ -45,14 +45,14 @@
          </children>
       </Pane>
       <TextArea fx:id="wordExplain" layoutX="30.0" layoutY="170.0" prefHeight="337.0" prefWidth="675.0" styleClass="explanation-field" />
-      <Text fill="#00224a" layoutX="91.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Favourite Word">
+      <Text fill="#00224a" layoutX="90.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="heading-text" text="Favourite Word">
          <font>
             <Font name="Dosis ExtraBold" size="48.0" />
          </font>
       </Text>
-      <ImageView fitHeight="61.0" fitWidth="100.0" layoutX="30.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="30.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Fav.png" />
+            <Image url="@../../Image/Fav.png" />
          </image>
       </ImageView>
    </children>
