@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Reporter #2';
+    src: url('Reporter.otf');
+}
+.GameOver {
+    -fx-font-family: 'Reporter #2';
+    -fx-font-size: 30px; /* Kích thước chữ */
+    -fx-text-fill: black; /* Màu chữ trắng */
+}
+.Congratulations {
+    -fx-font-size: 50px; /* Kích thước chữ */
+}

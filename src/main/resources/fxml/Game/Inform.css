@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'Reporter #2';
+    src: url('Reporter.otf');
+}
+.info-text {
+    -fx-font-size: 20px; /* Kích thước chữ */
+    -fx-padding: 10; /* Khoảng cách giữa các ký tự */
+    -fx-text-fill: white; /* Màu chữ trắng */
+    -fx-font-weight: bold; /* Đậm */
+    -fx-background-color: #eb4d7d; /* Màu nền cho infoText */
+    -fx-background-radius: 5; /* Bo góc cho infoText */
+    -fx-border-color: white; /* Màu viền */
+    -fx-border-width: 1; /* Độ rộng viền */
+}
+.sound {
+    -fx-font-size: 45px;
+    -fx-background-color: transparent;
+}

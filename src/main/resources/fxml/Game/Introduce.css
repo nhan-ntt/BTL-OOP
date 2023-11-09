@@ -1,0 +1,10 @@
+.root {
+    -fx-background-image: url('background_lmo.jpg');
+    -fx-background-size: 1000px 600px;
+}
+.transparent-button {
+    -fx-font-size: 25;
+    -fx-background-color:transparent;
+    -fx-text-fill: transparent;
+    -fx-border-color: transparent;
+}

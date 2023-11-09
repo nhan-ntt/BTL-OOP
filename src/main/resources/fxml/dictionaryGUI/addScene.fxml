@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="532.0" prefWidth="984.0" styleClass="container" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dictionaryGUI.addController">
+   <children>
+      <TextArea fx:id="wordExplain" layoutX="30.0" layoutY="170.0" prefHeight="290.0" prefWidth="925.0" promptText="Type meaning" styleClass="explanation-field" />
+      <Label fx:id="existed" layoutX="681.0" layoutY="45.0" prefHeight="30.0" prefWidth="266.0" styleClass="warning-alert" text="This word is already existed">
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Image/close.png" />
+               </image>
+            </ImageView>
+         </graphic></Label>
+      <Pane layoutX="30.0" layoutY="90.0" prefHeight="70.0" prefWidth="925.0" styleClass="word-bar" stylesheets="@style.css">
+         <children>
+            <TextField fx:id="wordTarget" layoutY="1.0" prefHeight="70.0" prefWidth="913.0" promptText="Type word" styleClass="word-target" />
+         </children>
+      </Pane>
+      <Button fx:id="addBtn" layoutX="441.0" layoutY="476.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="96.0" styleClass="add-trans-button" text="add">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label fx:id="ok" layoutX="552.0" layoutY="478.0" prefHeight="35.0" prefWidth="255.0" styleClass="success-alert" stylesheets="@style.css" text="Added successfully">
+         <font>
+            <Font size="19.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Image/check-mark.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
+      <Text fill="#00224a" layoutX="90.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="heading-text" text="Add Word">
+         <font>
+            <Font name="Dosis ExtraBold" size="48.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="30.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Image/Add.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

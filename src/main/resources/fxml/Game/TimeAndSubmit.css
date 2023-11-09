@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'Reporter #2';
+    src: url('Reporter.otf');
+}
+.submit-button {
+    -fx-border-color: #16380B;
+    -fx-border-width: 3; /* Độ rộng của viền */
+    -fx-border-radius: 35;
+    -fx-font-family: 'Reporter #2';
+    -fx-font-size: 25;
+    -fx-background-color: #314A06; /* Màu nền xanh lá */
+    -fx-text-fill: #FFFFFF; /* Màu chữ trắng */
+    -fx-background-radius: 35; /* Bo góc tròn */
+    -fx-padding: 5 28; /* Khoảng cách giữa văn bản và biên của nút */
+}
+.time {
+    -fx-font-family: 'Reporter #2';
+    -fx-font-size: 35;
+    -fx-text-fill: white; /* Màu chữ */
+    -fx-padding: 5 28; /* Khoảng cách giữa văn bản và biên của nút */
+}
